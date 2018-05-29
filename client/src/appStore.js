@@ -16,6 +16,27 @@ export { store as appStore };
 function apiCall() {
   return sanity.fetch(
     `*[_type == 'website'] | [0] {
+      introChapters[]->{
+        pages[],
+      },
+      summaryChapters[]->{
+        pages[],
+      },
+      experimentChapters[]->{
+        experiments[]->{
+          menuTitle,
+          fullTitle,
+          slug,
+          type,
+          period,
+          dataSetSize,
+          misc[]{
+            key,
+            value,
+          },
+          pages[],
+        },
+      },
     }`
   );
 }

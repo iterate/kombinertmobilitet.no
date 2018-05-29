@@ -10,6 +10,8 @@ import blockContent from './blockContent'; // TODO rename?
 import slideshowPage from './slideshowPage';
 import pollPage, { answerAlternative } from './pollPage';
 
+import website from './website';
+
 export default createSchema({
   name: 'default',
   types: schemaTypes.concat([
@@ -22,5 +24,7 @@ export default createSchema({
     pollPage,
     answerAlternative,
     blockContent,
+
+    website,
   ]),
 });
