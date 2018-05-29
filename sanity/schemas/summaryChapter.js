@@ -11,7 +11,7 @@ export default {
     {
       name: 'fullTitle',
       title: 'Full tittel',
-      description: 'Tittel på første side av kapitlet'
+      description: 'Tittel på første side',
       type: 'string',
     },
     {

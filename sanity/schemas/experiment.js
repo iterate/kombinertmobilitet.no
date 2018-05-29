@@ -1,15 +1,16 @@
 export default {
+  name: 'experiment',
   type: 'object',
   fields: [
     {
       name: 'menuTitle',
       title: 'Tittel i meny',
-      type: 'slug',
+      type: 'string',
     },
     {
       name: 'fullTitle',
       title: 'Full tittel',
-      description: 'Tittel på første side av kapitlet'
+      description: 'Tittel på første side',
       type: 'string',
     },
     {
@@ -18,7 +19,6 @@ export default {
       description: 'Unik tekststreng som brukes i URL',
       type: 'slug',
       options: {
-        source: 'menuTitle',
         maxLength: 32,
       },
     },
@@ -34,7 +34,7 @@ export default {
       type: 'string',
     },
     {
-      name: 'dataSetSize'
+      name: 'dataSetSize',
       title: 'Datagrunnlag',
       type: 'string',
     },
@@ -58,6 +58,15 @@ export default {
             type: 'string',
           },
         ],
+        preview: {
+          select: {
+            key: 'key',
+            value: 'value',
+          },
+          prepare: (s) => ({
+            title: `${s.key}: ${s.value}`
+          }),
+        },
       }],
     },
     {
@@ -66,9 +75,9 @@ export default {
       type: 'array',
       of: [
         { type: 'blockContent' }, // <-- TODO how does this turn out?
-        { type: 'textPage' },
-        { type: 'slideshowPage' },
-        { type: 'pollPage' },
+        // { type: 'textPage' },
+        // { type: 'slideshowPage' },
+        // { type: 'pollPage' },
       ],
     },
   ],
