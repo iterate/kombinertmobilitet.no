@@ -9,6 +9,7 @@ import author from './author'
 import experimentChapter from './experimentChapter';
 import experiment from './experiment';
 import slideshowPage from './slideshowPage';
+import pollPage, { answerAlternative } from './pollPage';
 
 export default createSchema({
   name: 'default',
@@ -16,5 +17,7 @@ export default createSchema({
     experimentChapter,
     experiment,
     slideshowPage,
-    ])
-})
+    pollPage,
+    answerAlternative,
+  ]),
+});
