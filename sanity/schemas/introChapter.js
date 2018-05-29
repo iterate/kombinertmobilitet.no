@@ -6,7 +6,7 @@ export default {
     {
       name: 'menuTitle',
       title: 'Tittel i meny',
-      type: 'slug',
+      type: 'string',
     },
     {
       name: 'fullTitle',
@@ -27,7 +27,8 @@ export default {
     {
       name: 'pages',
       title: 'Sider',
-      of: TODO,
+      type: 'array',
+      of: [{ type: 'blockContent' }],
     },
   ],
   preview: {
