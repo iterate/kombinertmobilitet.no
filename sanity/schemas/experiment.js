@@ -90,7 +90,7 @@ export default {
       of: [
         { type: 'blockContent' }, // <-- TODO how does this turn out?
         // { type: 'textPage' },
-        // { type: 'slideshowPage' },
+        { type: 'slideshowPage' },
         // { type: 'pollPage' },
       ],
     },
