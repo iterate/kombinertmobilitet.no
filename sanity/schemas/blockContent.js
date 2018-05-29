@@ -1,7 +1,9 @@
+const flatten = (arr, next) => arr.concat(next);
+
 export default {
   title: 'Block Content',
   name: 'blockContent',
-  type: 'object',
+  type: 'document',
   fields: [
     {
       name: 'content',
@@ -45,4 +47,21 @@ export default {
       ],
     },
   ],
+  preview: {
+    select: {
+      content: 'content',
+    },
+    prepare: (s) => {
+      const title = s.content
+          .slice(0, 1)
+          .map(block => block.children.slice(0, 1))
+          .reduce(flatten, [])
+          .map(child => child.text.slice(0, 25))
+          [0];
+
+      return {
+        title
+      };
+    },
+  },
 };

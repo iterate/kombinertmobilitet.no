@@ -51,7 +51,6 @@ export default {
       fieldset: 'info',
       type: 'string',
     },
-
     {
       name: 'misc',
       title: 'Annet',
@@ -83,6 +82,7 @@ export default {
         },
       }],
     },
+
     {
       name: 'pages',
       title: 'Sider',

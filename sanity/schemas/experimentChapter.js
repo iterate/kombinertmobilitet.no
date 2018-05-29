@@ -24,8 +24,8 @@ export default {
       },
     },
     {
-      name: 'sections',
-      title: 'Sider',
+      name: 'experiments',
+      title: 'Eksperimenter',
       type: 'array',
       of: [{ type: 'experiment' }],
     },
