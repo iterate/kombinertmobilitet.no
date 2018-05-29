@@ -28,7 +28,10 @@ export default {
       name: 'pages',
       title: 'Sider',
       type: 'array',
-      of: [{ type: 'blockContent' }],
+      of: [
+        { type: 'blockContent' },
+        { type: 'slideshowPage' },
+      ],
     },
   ],
   preview: {
