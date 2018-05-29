@@ -1,6 +1,16 @@
 export default {
   name: 'experiment',
   type: 'object',
+  fieldsets: [
+    {
+      title: 'Info',
+      name: 'info',
+      options: {
+        collapsible: true,
+        collapsed: true,
+      },
+    },
+  ],
   fields: [
     {
       name: 'menuTitle',
@@ -26,16 +36,19 @@ export default {
     {
       name: 'type',
       title: 'Eksperimentform',
+      fieldset: 'info',
       type: 'string',
     },
     {
       name: 'period',
       title: 'Periode',
+      fieldset: 'info',
       type: 'string',
     },
     {
       name: 'dataSetSize',
       title: 'Datagrunnlag',
+      fieldset: 'info',
       type: 'string',
     },
 
@@ -43,6 +56,7 @@ export default {
       name: 'misc',
       title: 'Annet',
       description: 'Vises som "Definisjon: Verdi"',
+      fieldset: 'info',
       type: 'array',
       of: [{
         type: 'object',
