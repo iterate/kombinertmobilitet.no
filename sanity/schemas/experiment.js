@@ -24,6 +24,16 @@ export default {
       type: 'string',
     },
     {
+      name: 'description',
+      title: 'Beskrivelse',
+      type: 'string',
+    },
+    {
+      name: 'wasCarriedOut',
+      title: 'Utført eksperiment',
+      type: 'boolean',
+    },
+    {
       name: 'slug',
       title: 'Slug',
       description: 'Unik tekststreng som brukes i URL',

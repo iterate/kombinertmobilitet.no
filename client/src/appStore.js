@@ -39,6 +39,8 @@ function apiCall() {
           _key,
           menuTitle,
           fullTitle,
+          description,
+          wasCarriedOut,
           slug,
           type,
           period,

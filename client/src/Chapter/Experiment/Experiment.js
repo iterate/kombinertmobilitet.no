@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Chapter, Page } from '../Chapter.style.js';
 import PageContent from 'components/PageContent';
-import { Wrapper, OverviewPage, Title, Item } from './Experiment.style.js';
+import { OverviewPage, OverviewPageContent, Title, Item, Star, Footer } from './Experiment.style.js';
 
 class Experiment extends React.Component {
   render() {
@@ -29,17 +29,24 @@ export default class ExperimentChapter extends React.Component {
     const { fullTitle, experiments = [] } = this.props.chapter;
 
     return (
-      <Wrapper>
+      <Fragment>
         <OverviewPage>
-          <Title>{index + 1}. {fullTitle}</Title>
-          {experiments.map(experiment =>
-            <Item key={experiment._key}>{experiment.fullTitle}</Item>
-          )}
+          <OverviewPageContent>
+            <Title>{index + 1}. {fullTitle}</Title>
+            {experiments.map(experiment =>
+              <Item key={experiment._key}>
+                {experiment.description}{experiment.wasCarriedOut && <Star>✦</Star>}
+              </Item>
+            )}
+          </OverviewPageContent>
+          <Footer>
+            <Star style={{fontSize: '16px', transform: 'none'}}>✦</Star> Utført eksperiment
+          </Footer>
         </OverviewPage>
         {experiments.map(experiment =>
           <Experiment key={experiment._key} experiment={experiment} />
         )}
-      </Wrapper>
+      </Fragment>
     );
   }
 }
