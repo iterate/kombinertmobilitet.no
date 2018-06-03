@@ -32,7 +32,11 @@ function apiCall() {
       },
       experimentChapters[]->{
         _id,
-        experiments[]->{
+        menuTitle,
+        fullTitle,
+        slug,
+        experiments[]{
+          _key,
           menuTitle,
           fullTitle,
           slug,

@@ -25,14 +25,14 @@ class App extends Component {
       case REQ.ERROR:
         return <div>Noe gikk galt!</div>;
       case REQ.SUCCESS:
-        console.debug(`content`, content); // DEBUG
+        console.debug(`content.experimentChapters`, content.experimentChapters); // DEBUG
         return (
           <div>
             {content.introChapters.map(chapter =>
               <Chapter.Intro key={chapter._id} chapter={chapter} />
             )}
-            {content.experimentChapters.map(chapter =>
-              <Chapter.Experiment key={chapter._id} chapter={chapter} />
+            {content.experimentChapters.map((chapter, index) =>
+              <Chapter.Experiment key={chapter._id} index={index} chapter={chapter} />
             )}
             {content.summaryChapters.map(chapter =>
               <Chapter.Summary key={chapter._id} chapter={chapter} />

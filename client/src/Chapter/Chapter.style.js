@@ -1,18 +1,18 @@
 import styled from 'styled-components';
 
 export const Chapter = styled.section`
-  ${p => p.intro && `
+  &.intro {
     background-color: var(--pastel-blue);
     color: black;
-  `}
-  ${p => p.experiment && `
+  }
+  &.experiment {
     background-color: var(--light-gray);
     color: black;
-  `}
-  ${p => p.summary && `
+  }
+  &.summary {
     background-color: black;
     color: white;
-  `}
+  }
 `;
 
 Chapter.Title = styled.section`

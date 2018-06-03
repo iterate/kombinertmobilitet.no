@@ -10,7 +10,7 @@ const BlockContent = ({ blockContent }) => (
       >
         {block.children.map(child =>
           <B.Child
-            key={block._key}
+            key={child._key}
           >
             {child.text}
           </B.Child>

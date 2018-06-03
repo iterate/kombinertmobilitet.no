@@ -10,8 +10,8 @@ export default class SummaryChapter extends React.Component {
     const { chapter } = this.props;
 
     return (
-      <Chapter summary>
-        {chapter.pages.map((page, index) => console.debug(`page.content:`, page.content) ||
+      <Chapter className="summary">
+        {chapter.pages.map((page, index) =>
           <Page key={page._key}>
             { index === 0 &&
               <Chapter.Title>{chapter.fullTitle}</Chapter.Title>
