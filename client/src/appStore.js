@@ -18,6 +18,9 @@ function apiCall() {
     `*[_type == 'website'] | [0] {
       introChapters[]->{
         _id,
+        menuTitle,
+        fullTitle,
+        slug,
         pages[],
       },
       summaryChapters[]->{
