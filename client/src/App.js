@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+import Chapter from 'Chapter';
+
 import { appStore, fetchContent } from 'appStore';
+import REQ from 'util/REQ';
 
 class App extends Component {
   componentDidMount() {
@@ -13,12 +16,30 @@ class App extends Component {
     this.forceUpdate();
   }
   render() {
-    console.log(`appStore.contentAsync`, appStore.contentAsync); // DEBUG
-    return (
-      <div>
-        Hello Kombinert Mobilitet!
-      </div>
-    );
+    const { req, content } = appStore.contentAsync;
+
+    switch (req) { // eslint-disable-line default-case
+      case REQ.INIT:
+      case REQ.PENDING:
+        return <div>Laster...</div>;
+      case REQ.ERROR:
+        return <div>Noe gikk galt!</div>;
+      case REQ.SUCCESS:
+        console.debug(`content`, content); // DEBUG
+        return (
+          <div>
+            {content.introChapters.map(chapter =>
+              <Chapter.Intro key={chapter._id} chapter={chapter} />
+            )}
+            {content.experimentChapters.map(chapter =>
+              <Chapter.Experiment key={chapter._id} chapter={chapter} />
+            )}
+            {content.summaryChapters.map(chapter =>
+              <Chapter.Summary key={chapter._id} chapter={chapter} />
+            )}
+          </div>
+        );
+    }
   }
 }
 

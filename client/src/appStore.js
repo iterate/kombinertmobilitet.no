@@ -17,12 +17,15 @@ function apiCall() {
   return sanity.fetch(
     `*[_type == 'website'] | [0] {
       introChapters[]->{
+        _id,
         pages[],
       },
       summaryChapters[]->{
+        _id,
         pages[],
       },
       experimentChapters[]->{
+        _id,
         experiments[]->{
           menuTitle,
           fullTitle,
