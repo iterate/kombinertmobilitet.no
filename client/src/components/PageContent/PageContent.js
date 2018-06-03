@@ -1,11 +1,7 @@
 import React from 'react';
 import BlockContent from './BlockContent';
+import Slideshow from './Slideshow';
 
-const Slideshow = ({ slideshow }) => (
-  <div>
-    Slideshow!
-  </div>
-);
 const Poll = ({ poll }) => (
   <div>
     Poll!
