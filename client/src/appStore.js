@@ -25,6 +25,9 @@ function apiCall() {
       },
       summaryChapters[]->{
         _id,
+        menuTitle,
+        fullTitle,
+        slug,
         pages[],
       },
       experimentChapters[]->{

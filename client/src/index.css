@@ -5,6 +5,7 @@ body {
   padding: 0;
 
   --pastel-blue: #99adff;
+  --light-gray: #f8f6f3;
 
   --sans: 'IBM Plex Sans', sans-serif;
   --mono: 'IBM Plex Mono', monospace;
