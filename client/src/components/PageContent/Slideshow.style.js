@@ -1,9 +1,23 @@
 import styled from 'styled-components';
 
+export const Slideshow = styled.div`
+  width: 900px;
+  height: 730px;
+  position: relative;
+`;
+export const Progress = styled.span`
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+
+  position: absolute;
+  top: 650px;
+  right: 0;
+`;
+
 export const Container = styled.div`
   width: 854px;
-  height: 666px;
-  background-color: #d8d8d8;
+  height: 730px;
   position: relative;
   overflow: hidden;
 `;
@@ -43,7 +57,7 @@ export const Track = styled.div`
   display: flex;
 `;
 export const Slide = styled.div`
-  position: relative;
+  background-color: #d8d8d8;
 `;
 export const Image = styled.img`
   width: 854px;
@@ -53,11 +67,4 @@ export const SubText = styled.div`
   font-family: var(--sans);
   font-size: 16px;
   line-height: 1.34;
-
-  z-index: 1;
-  position: absolute;
-  bottom: 10px;
-  left: 0;
-  right: 0;
-  text-align: center;
 `;

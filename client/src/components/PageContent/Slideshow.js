@@ -13,18 +13,21 @@ export default class Slideshow extends React.Component {
     const changeBy = (number) => () => this.setState(state => ({ slideNo: state.slideNo + number }));
 
     return (
-      <S.Container>
-        <S.Arrow src={require('./west.svg')} className="previous" onClick={changeBy(-1)} />
-        <S.Arrow src={require('./west.svg')} className="next" onClick={changeBy(1)} />
-        <S.Track slideNo={this.state.slideNo}>
-          {slideshow.slides.map(slide =>
-            <S.Slide>
-              <S.Image src={getImageUrl(slide.image).width(854).height(666).fit('scale').url()} />
-              <S.SubText>{slide.subtext}</S.SubText>
-            </S.Slide>
-          )}
-        </S.Track>
-      </S.Container>
+      <S.Slideshow>
+        <S.Container>
+          <S.Arrow src={require('./west.svg')} className="previous" onClick={changeBy(-1)} />
+          <S.Arrow src={require('./west.svg')} className="next" onClick={changeBy(1)} />
+          <S.Track slideNo={this.state.slideNo}>
+            {slideshow.slides.map(slide =>
+              <S.Slide>
+                <S.Image src={getImageUrl(slide.image).width(854).height(666).fit('scale').url()} />
+                <S.SubText>{slide.subtext}</S.SubText>
+              </S.Slide>
+            )}
+          </S.Track>
+        </S.Container>
+        <S.Progress>{this.state.slideNo + 1}/{slideshow.slides.length}</S.Progress>
+      </S.Slideshow>
     );
   }
 }
