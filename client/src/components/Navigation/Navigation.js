@@ -1,27 +1,7 @@
 import React, { Fragment } from 'react';
 import * as N from './Navigation.style.js';
 
-const ChapterLink = (chapter) => (
-  <N.Link active={false/*TODO*/} passed={false/*TODO*/}>
-    {chapter.menuTitle}
-  </N.Link>
-);
-
-const SubChapterLink = (chapter) => (
-  <N.Link active={false/*TODO*/} passed={false/*TODO*/} subChapter={true}>
-    {chapter.menuTitle}
-  </N.Link>
-);
-
 const active = true;
-const ExperimentChapterLink = (chapter) => (
-  <Fragment>
-    <N.Link active={false/*TODO*/} passed={false/*TODO*/}>
-      {chapter.menuTitle}
-    </N.Link>
-    {active && chapter.experimentChapters.map(SubChapterLink)}
-  </Fragment>
-);
 
 export default class Navigation extends React.Component {
   render() {
@@ -29,11 +9,47 @@ export default class Navigation extends React.Component {
 
     return (
       <N.Navigation isAtSummary={false/*TODO*/}>
-        {introChapters.map(ChapterLink)}
+        {introChapters.map(chapter =>
+          <N.Link
+            key={chapter._key}
+            active={false/*TODO*/}
+            passed={false/*TODO*/}
+          >
+            {chapter.menuTitle}
+          </N.Link>
+        )}
         <br />
-        {experimentChapters.map(ExperimentChapterLink)}
+        {experimentChapters.map(chapter =>
+          <Fragment>
+            <N.Link
+              key={chapter._key}
+              active={false/*TODO*/}
+              passed={false/*TODO*/}
+            >
+              {chapter.menuTitle}
+            </N.Link>
+            {active && chapter.experiments && chapter.experiments.map(subChapter =>
+              <N.Link
+                key={subChapter._key}
+                active={false/*TODO*/}
+                passed={false/*TODO*/}
+                isSubChapter={true}
+              >
+                {subChapter.menuTitle}
+              </N.Link>
+            )}
+          </Fragment>
+        )}
         <br />
-        {summaryChapters.map(ChapterLink)}
+        {summaryChapters.map(chapter =>
+          <N.Link
+            key={chapter._key}
+            active={false/*TODO*/}
+            passed={false/*TODO*/}
+          >
+            {chapter.menuTitle}
+          </N.Link>
+        )}
       </N.Navigation>
     );
   }

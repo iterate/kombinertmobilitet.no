@@ -14,11 +14,14 @@ export const Navigation = styled.div`
 `;
 
 export const Link = styled.div`
-
   ${p => p.active &&
     `text-decoration: underline;`
   }
   ${p => p.passed &&
     `text-decoration: line-through;`
+  }
+
+  ${p => p.isSubChapter &&
+    `margin-left: 2em;`
   }
 `;
