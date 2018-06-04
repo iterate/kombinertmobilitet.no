@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const Navigation = styled.div`
+  z-index: 5;
+
   position: fixed;
   left: 41px;
   top: 38px;
@@ -19,7 +21,7 @@ export const Link = styled.div`
   ${p => p.active &&
     `text-decoration: underline;`
   }
-  ${p => p.passed &&
+  ${p => p.alreadyRead &&
     `text-decoration: line-through;`
   }
 
