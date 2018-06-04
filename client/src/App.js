@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
+import Navigation from 'components/Navigation';
 import Chapter from 'Chapter';
 
 import { appStore, fetchContent } from 'appStore';
@@ -25,9 +26,9 @@ class App extends Component {
       case REQ.ERROR:
         return <div>Noe gikk galt!</div>;
       case REQ.SUCCESS:
-        console.debug(`content.experimentChapters`, content.experimentChapters); // DEBUG
         return (
-          <div>
+          <Fragment>
+            <Navigation pageContent={content} />
             {content.introChapters.map(chapter =>
               <Chapter.Intro key={chapter._id} chapter={chapter} />
             )}
@@ -37,7 +38,7 @@ class App extends Component {
             {content.summaryChapters.map(chapter =>
               <Chapter.Summary key={chapter._id} chapter={chapter} />
             )}
-          </div>
+          </Fragment>
         );
     }
   }
