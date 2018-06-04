@@ -1,11 +1,9 @@
 import React from 'react';
-import {
-  Chapter,
-  Page,
-} from '../Chapter.style.js';
+import { withScroll } from '../withScroll.js'
+import { Chapter, Page } from '../Chapter.style.js';
 import PageContent from 'components/PageContent';
 
-export default class SummaryChapter extends React.Component {
+class SummaryChapter extends React.Component {
   render() {
     const { chapter } = this.props;
 
@@ -23,3 +21,5 @@ export default class SummaryChapter extends React.Component {
     );
   }
 }
+
+export default withScroll(SummaryChapter);

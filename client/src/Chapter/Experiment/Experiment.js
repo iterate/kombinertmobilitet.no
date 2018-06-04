@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import { withScroll } from '../withScroll';
 import { Chapter, Page } from '../Chapter.style.js';
 import PageContent from 'components/PageContent';
 import { OverviewPage, OverviewPageContent, Title, Item, Star, Footer } from './Experiment.style.js';
@@ -22,8 +23,7 @@ class Experiment extends React.Component {
   }
 }
 
-
-export default class ExperimentChapter extends React.Component {
+class ExperimentChapter extends React.Component {
   render() {
     const { index } = this.props;
     const { fullTitle, experiments = [] } = this.props.chapter;
@@ -50,3 +50,5 @@ export default class ExperimentChapter extends React.Component {
     );
   }
 }
+
+export default withScroll(ExperimentChapter);

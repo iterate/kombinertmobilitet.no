@@ -1,13 +1,15 @@
 import React from 'react';
+import { withScroll } from '../withScroll.js'
 import { Chapter, Page } from '../Chapter.style.js';
 import PageContent from 'components/PageContent';
 
-export default class IntroChapter extends React.Component {
+class IntroChapter extends React.Component {
+
   render() {
     const { chapter } = this.props;
 
     return (
-      <Chapter className="intro">
+      <Chapter className="intro" ref={node => this.node = node}>
         {chapter.pages.map((page, index) =>
           <Page key={page._key}>
             { index === 0 &&
@@ -20,3 +22,5 @@ export default class IntroChapter extends React.Component {
     );
   }
 }
+
+export default withScroll(IntroChapter);

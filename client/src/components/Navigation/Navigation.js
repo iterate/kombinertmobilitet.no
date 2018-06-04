@@ -4,6 +4,11 @@ import * as N from './Navigation.style.js';
 const active = true;
 
 export default class Navigation extends React.Component {
+
+  goTo = (chapter) => () => {
+    window.location.hash = chapter.slug.current;
+  }
+
   render() {
     const { introChapters, experimentChapters, summaryChapters } = this.props.pageContent;
 
@@ -11,20 +16,21 @@ export default class Navigation extends React.Component {
       <N.Navigation isAtSummary={false/*TODO*/}>
         {introChapters.map(chapter =>
           <N.Link
-            key={chapter._key}
+            key={chapter._id}
             active={false/*TODO*/}
             passed={false/*TODO*/}
+            onClick={this.goTo(chapter)}
           >
             {chapter.menuTitle}
           </N.Link>
         )}
         <br />
         {experimentChapters.map(chapter =>
-          <Fragment>
+          <Fragment key={chapter._id}>
             <N.Link
-              key={chapter._key}
               active={false/*TODO*/}
               passed={false/*TODO*/}
+              onClick={this.goTo(chapter)}
             >
               {chapter.menuTitle}
             </N.Link>
@@ -33,6 +39,7 @@ export default class Navigation extends React.Component {
                 key={subChapter._key}
                 active={false/*TODO*/}
                 passed={false/*TODO*/}
+                onClick={this.goTo(chapter)}
                 isSubChapter={true}
               >
                 {subChapter.menuTitle}
@@ -43,9 +50,10 @@ export default class Navigation extends React.Component {
         <br />
         {summaryChapters.map(chapter =>
           <N.Link
-            key={chapter._key}
+            key={chapter._id}
             active={false/*TODO*/}
             passed={false/*TODO*/}
+            onClick={this.goTo(chapter)}
           >
             {chapter.menuTitle}
           </N.Link>

@@ -14,6 +14,8 @@ export const Navigation = styled.div`
 `;
 
 export const Link = styled.div`
+  cursor: pointer;
+
   ${p => p.active &&
     `text-decoration: underline;`
   }
