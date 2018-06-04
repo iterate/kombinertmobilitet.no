@@ -12,14 +12,16 @@ export default class Slideshow extends React.Component {
     const { slideshow } = this.props;
     const changeBy = (number) => () => this.setState(state => ({ slideNo: state.slideNo + number }));
 
+    const { slideNo } = this.state;
+
     return (
       <S.Slideshow>
         <S.Container>
-          <S.Arrow src={require('./west.svg')} className="previous" onClick={changeBy(-1)} />
-          <S.Arrow src={require('./west.svg')} className="next" onClick={changeBy(1)} />
+          <S.Navigation className="previous" onClick={changeBy(-1)} hidden={slideNo < 1} />
+          <S.Navigation className="next" onClick={changeBy(1)} hidden={slideNo > slideshow.slides.length - 2} />
           <S.Track slideNo={this.state.slideNo}>
             {slideshow.slides.map(slide =>
-              <S.Slide>
+              <S.Slide key={slide._key}>
                 <S.Image src={getImageUrl(slide.image).width(854).height(666).fit('scale').url()} />
                 <S.SubText>{slide.subtext}</S.SubText>
               </S.Slide>

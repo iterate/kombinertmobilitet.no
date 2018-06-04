@@ -22,27 +22,25 @@ export const Container = styled.div`
   overflow: hidden;
 `;
 
-export const Arrow = styled.img`
+export const Navigation = styled.div`
   z-index: 2;
+  position: absolute;
 
-  padding: 20px;
-  width: 18px;
-  height: 18px;
-  object-fit: contain;
-
-  cursor: pointer;
+  top: 0;
+  bottom: 0;
 
   &.previous {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    left: 100px;
+    left: 0;
+    right: 50%;
+    cursor: url(${require('./west.svg')}), w-resize;
   }
   &.next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%) rotate(180deg);
-    right: 100px;
+    left: 50%;
+    right: 0;
+    cursor: e-resize;
+  }
+  &.hidden {
+    display: none;
   }
 `;
 
