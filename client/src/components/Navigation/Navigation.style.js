@@ -18,14 +18,17 @@ export const Navigation = styled.div`
 export const Link = styled.div`
   cursor: pointer;
 
-  ${p => p.active &&
-    `text-decoration: underline;`
+  text-decoration: line-through;
+
+  &.active ~ div {
+    text-decoration: none;
   }
-  ${p => p.alreadyRead &&
-    `text-decoration: line-through;`
+
+  &.active {
+    text-decoration: underline;
   }
 
   ${p => p.isSubChapter &&
-    `margin-left: 2em;`
+    'margin-left: 2em;'
   }
 `;

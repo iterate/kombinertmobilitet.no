@@ -1,34 +1,40 @@
 import React, { Fragment } from 'react';
 import * as N from './Navigation.style.js';
 
-const isActive = (chapter) => chapter.slug.current === window.location.hash.replace('#', '');
+const isActiveExact = (chapter) => chapter.slug.current === window.location.hash.replace('#', '');
+const isActive = (chapter) => chapter.slug.current === window.location.hash.replace('#', '').split('/')[0];
+const isActiveSub = (chapter, subChapter) => isActive(chapter) && subChapter.slug.current === window.location.hash.split('/')[1];
 
 export default class Navigation extends React.Component {
+
+  componentDidMount() {
+    window.addEventListener('hashchange', this.onChange);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('hashchange', this.onChange);
+  }
+  onChange = () => {
+    this.forceUpdate();
+  }
 
   goTo = (chapter) => () => {
     window.location.hash = chapter.slug.current;
   }
 
+  goToSub = (chapter, subChapter) => () => {
+    window.location.hash = chapter.slug.current + '/' + subChapter.slug.current;
+  }
+
   render() {
     const { introChapters, experimentChapters, summaryChapters } = this.props.pageContent;
 
-    let cameBeforeActive = true;
-
     return (
-      <N.Navigation isAtSummary={false/*TODO*/}>
+      <N.Navigation isAtSummary={summaryChapters.some(isActive)}>
         {introChapters.map(chapter => {
-          const active = isActive(chapter);
-          const alreadyRead = !active && cameBeforeActive;
-
-          if (active) {
-            cameBeforeActive = false;
-          }
-
           return (
             <N.Link
               key={chapter._id}
-              active={active}
-              alreadyRead={alreadyRead}
+              className={isActive(chapter) ? 'active' : ''}
               onClick={this.goTo(chapter)}
             >
               {chapter.menuTitle}
@@ -37,36 +43,20 @@ export default class Navigation extends React.Component {
         })}
         <br />
         {experimentChapters.map(chapter => {
-          const active = isActive(chapter);
-          const alreadyRead = !active && cameBeforeActive;
-
-          if (active) {
-            cameBeforeActive = false;
-          }
-
           return (
             <Fragment key={chapter._id}>
               <N.Link
-                active={active}
-                alreadyRead={alreadyRead}
+                className={isActiveExact(chapter) ? 'active' : ''}
                 onClick={this.goTo(chapter)}
               >
                 {chapter.menuTitle}
               </N.Link>
-              {active && chapter.experiments && chapter.experiments.map(subChapter => {
-                const active = isActive(chapter);
-                const alreadyRead = !active && cameBeforeActive;
-
-                if (active) {
-                  cameBeforeActive = false;
-                }
-
+              {isActive(chapter) && chapter.experiments && chapter.experiments.map(subChapter => {
                 return (
                   <N.Link
                     key={subChapter._key}
-                    active={active}
-                    alreadyRead={alreadyRead}
-                    onClick={this.goTo(chapter)}
+                    className={isActiveSub(chapter, subChapter) ? 'active' : ''}
+                    onClick={this.goToSub(chapter, subChapter)}
                     isSubChapter={true}
                   >
                     {subChapter.menuTitle}
@@ -78,18 +68,10 @@ export default class Navigation extends React.Component {
         })}
         <br />
         {summaryChapters.map(chapter => {
-          const active = isActive(chapter);
-          const alreadyRead = !active && cameBeforeActive;
-
-          if (active) {
-            cameBeforeActive = false;
-          }
-
           return (
             <N.Link
               key={chapter._id}
-              active={active}
-              alreadyRead={alreadyRead}
+              className={isActive(chapter) ? 'active' : ''}
               onClick={this.goTo(chapter)}
             >
               {chapter.menuTitle}
