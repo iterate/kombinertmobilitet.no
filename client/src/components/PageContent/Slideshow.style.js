@@ -32,12 +32,12 @@ export const Navigation = styled.div`
   &.previous {
     left: 0;
     right: 50%;
-    cursor: url(${require('./west.svg')}), w-resize;
+    cursor: url(${require('./left.png')}), w-resize;
   }
   &.next {
     left: 50%;
     right: 0;
-    cursor: e-resize;
+    cursor: url(${require('./right.png')}), e-resize;
   }
   &.hidden {
     display: none;
