@@ -19,16 +19,15 @@ export default class ChapterPage extends React.Component {
   }
   onScroll = () => {
     clearTimeout(this.timeout);
-    this.timeout = setTimeout(this.onScrollEnd, 200);
+    this.timeout = setTimeout(this.onScrollEnd, 500);
   }
   onScrollEnd = () => {
-    console.log('done scrolling');
     Object.values(this.nodes)
       .filter(Boolean)
       .map(ReactDOM.findDOMNode)
       .sort(ascending(absScollOffset))
       .slice(0, 1)
-      .forEach(closest => closest.scrollIntoView());
+      .forEach(closestPage => closestPage.scrollIntoView({ behavior: 'smooth' }));
   }
 
   render() {
