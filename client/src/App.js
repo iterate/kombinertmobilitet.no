@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import React, { Component } from 'react';
 import MainPage from 'pages/Main';
-import SubChapterPage from 'pages/SubChapter';
+import ChapterPage from 'pages/Chapter';
 
 import { appStore, fetchContent } from 'appStore';
 import REQ from 'util/REQ';
@@ -31,8 +31,7 @@ export default class App extends Component {
           <Router>
             <Switch>
               <Route exact path="/" component={MainPage} />
-              <Route exact path="/:chapter" component={MainPage} />
-              <Route exact path="/:chapter/:subChapter" component={SubChapterPage} />
+              <Route exact path="/:chapterSlug" component={ChapterPage} />
             </Switch>
           </Router>
         );

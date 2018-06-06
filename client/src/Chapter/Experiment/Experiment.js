@@ -2,9 +2,9 @@ import React, { Fragment } from 'react';
 import { withScroll } from '../withScroll';
 import { Chapter, Page } from '../Chapter.style.js';
 import PageContent from 'components/PageContent';
-import { OverviewPage, OverviewPageContent, Title, Item, Star, Footer } from './Experiment.style.js';
+import { OverviewPage, OverviewPageContent, Title, SubChapterLink, Star, Footer } from './Experiment.style.js';
 
-class Experiment extends React.Component {
+export class Experiment extends React.Component {
   render() {
     const { experiment } = this.props;
 
@@ -25,7 +25,7 @@ class Experiment extends React.Component {
 
 class ExperimentChapter extends React.Component {
   render() {
-    const { index } = this.props;
+    const { index, chapter } = this.props;
     const { fullTitle, experiments = [] } = this.props.chapter;
 
     return (
@@ -34,9 +34,12 @@ class ExperimentChapter extends React.Component {
           <OverviewPageContent>
             <Title>{index + 1}. {fullTitle}</Title>
             {experiments.map(experiment =>
-              <Item key={experiment._key}>
+              <SubChapterLink
+                to={`/${chapter.slug.current}#${experiment.slug.current}`}
+                key={experiment._key}
+              >
                 {experiment.description}{experiment.wasCarriedOut && <Star>✦</Star>}
-              </Item>
+              </SubChapterLink>
             )}
           </OverviewPageContent>
           <Footer>

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const OverviewPage = styled.div`
   background-color: var(--light-gray);
@@ -22,7 +23,16 @@ export const Title = styled.div`
   margin-bottom: 90px;
 `;
 
-export const Item = styled.div`
+export const SubChapterLink = styled(Link)`
+  display: block;
+
+  color: black;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline solid black;
+  }
+
   font-family: var(--sans);
   font-size: 24px;
   line-height: 2.25;
