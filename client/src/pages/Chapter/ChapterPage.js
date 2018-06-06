@@ -19,7 +19,7 @@ export default class ChapterPage extends React.Component {
   }
   onScroll = () => {
     clearTimeout(this.timeout);
-    this.timeout = setTimeout(this.onScrollEnd, 500);
+    this.timeout = setTimeout(this.onScrollEnd, 200);
   }
   onScrollEnd = () => {
     Object.values(this.nodes)

@@ -8,7 +8,7 @@ class ExperimentChapter extends React.Component {
     const { fullTitle, experiments = [] } = this.props.chapter;
 
     return (
-      <OverviewPage>
+      <OverviewPage ref={node => this.props.nodes[chapter.slug.current] = node}>
         <OverviewPageContent>
           <Title>{index + 1}. {fullTitle}</Title>
           {experiments.map(experiment =>

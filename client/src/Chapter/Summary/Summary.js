@@ -8,7 +8,10 @@ class SummaryChapter extends React.Component {
     const { chapter } = this.props;
 
     return (
-      <Chapter className="summary">
+      <Chapter
+        className="summary"
+        ref={node => this.props.nodes[chapter.slug.current] = node}
+      >
         {chapter.pages.map((page, index) =>
           <PageWrapper key={page._key}>
             <Page>
