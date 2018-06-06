@@ -1,10 +1,36 @@
+import ReactDOM from 'react-dom';
 import React, { Fragment } from 'react';
 import Navigation from 'components/Navigation';
 import ExperimentSubChapter from 'Chapter/Experiment/Sub';
 
 import { appStore } from 'appStore';
 
+const ascending = (compareFn) => (one, two) => compareFn(one) - compareFn(two);
+const absScollOffset = (node) => Math.abs(node.getBoundingClientRect().y);
+
 export default class ChapterPage extends React.Component {
+  nodes = []
+
+  componentDidMount() {
+    window.addEventListener('scroll', this.onScroll);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.onScroll);
+  }
+  onScroll = () => {
+    clearTimeout(this.timeout);
+    this.timeout = setTimeout(this.onScrollEnd, 200);
+  }
+  onScrollEnd = () => {
+    console.log('done scrolling');
+    Object.values(this.nodes)
+      .filter(Boolean)
+      .map(ReactDOM.findDOMNode)
+      .sort(ascending(absScollOffset))
+      .slice(0, 1)
+      .forEach(closest => closest.scrollIntoView());
+  }
+
   render() {
     const { content } = appStore.contentAsync;
     const { params } = this.props.match;
@@ -25,6 +51,7 @@ export default class ChapterPage extends React.Component {
             key={experiment._key}
             experiment={experiment}
             chapter={experiment /* quick fix for withScroll */}
+            nodes={this.nodes}
           />
         )}
       </Fragment>

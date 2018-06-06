@@ -10,7 +10,10 @@ class ExperimentSubChapter extends React.Component {
     return (
       <Chapter className="experiment">
         {experiment.pages.map((page, index) =>
-          <PageWrapper key={page._key}>
+          <PageWrapper
+            key={page._key}
+            ref={node => this.props.nodes[experiment.slug.current+'/'+index] = node}
+          >
             <Page>
               { index === 0 &&
                 <Chapter.Title>{experiment.fullTitle}</Chapter.Title>
