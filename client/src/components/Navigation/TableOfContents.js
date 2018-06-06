@@ -1,9 +1,9 @@
 import React, { Fragment } from 'react';
-import * as N from './Navigation.style.js';
+import * as N from './TableOfContents.style.js';
 
 const isActive = (chapter) => chapter.slug.current === window.location.hash.split('#')[1];
 
-export default class Navigation extends React.Component {
+export default class TableOfContents extends React.Component {
 
   componentDidMount() {
     window.addEventListener('hashchange', this.onChange);
