@@ -1,11 +1,12 @@
-import React, { Component, Fragment } from 'react';
-import Navigation from 'components/Navigation';
-import Chapter from 'Chapter';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import React, { Component } from 'react';
+import MainPage from 'pages/Main';
+import SubChapterPage from 'pages/SubChapter';
 
 import { appStore, fetchContent } from 'appStore';
 import REQ from 'util/REQ';
 
-class App extends Component {
+export default class App extends Component {
   componentDidMount() {
     fetchContent();
     appStore.addListener(this.onChange);
@@ -17,7 +18,7 @@ class App extends Component {
     this.forceUpdate();
   }
   render() {
-    const { req, content } = appStore.contentAsync;
+    const { req } = appStore.contentAsync;
 
     switch (req) { // eslint-disable-line default-case
       case REQ.INIT:
@@ -27,21 +28,14 @@ class App extends Component {
         return <div>Noe gikk galt!</div>;
       case REQ.SUCCESS:
         return (
-          <Fragment>
-            <Navigation pageContent={content} />
-            {content.introChapters.map(chapter =>
-              <Chapter.Intro key={chapter._id} chapter={chapter} />
-            )}
-            {content.experimentChapters.map((chapter, index) =>
-              <Chapter.Experiment key={chapter._id} index={index} chapter={chapter} />
-            )}
-            {content.summaryChapters.map(chapter =>
-              <Chapter.Summary key={chapter._id} chapter={chapter} />
-            )}
-          </Fragment>
+          <Router>
+            <Switch>
+              <Route exact path="/" component={MainPage} />
+              <Route exact path="/:chapter" component={MainPage} />
+              <Route exact path="/:chapter/:subChapter" component={SubChapterPage} />
+            </Switch>
+          </Router>
         );
     }
   }
 }
-
-export default App;
