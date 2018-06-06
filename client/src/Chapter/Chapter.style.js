@@ -15,7 +15,7 @@ export const Chapter = styled.section`
   }
 `;
 
-Chapter.Title = styled.section`
+Chapter.Title = styled.div`
   font-family: var(--sans);
   font-size: 64px;
   line-height: 1.14;
@@ -23,12 +23,17 @@ Chapter.Title = styled.section`
   margin-bottom: 100px;
 `;
 
+export const PageWrapper = styled.div`
+  height: 100vh;
+  display: flex;
+  align-items: center;
+`;
+
 export const Page = styled.div`
   box-sizing: border-box;
   margin: auto;
-  padding: 150px 0;
+  padding-bottom: 200px;
   max-width: 855px;
-  height: 100vh;
 
   font-family: var(--sans);
   font-size: 16px;

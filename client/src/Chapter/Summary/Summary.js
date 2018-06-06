@@ -1,6 +1,6 @@
 import React from 'react';
 import { withScroll } from '../withScroll.js'
-import { Chapter, Page } from '../Chapter.style.js';
+import { Chapter, PageWrapper, Page } from '../Chapter.style.js';
 import PageContent from 'components/PageContent';
 
 class SummaryChapter extends React.Component {
@@ -10,12 +10,14 @@ class SummaryChapter extends React.Component {
     return (
       <Chapter className="summary">
         {chapter.pages.map((page, index) =>
-          <Page key={page._key}>
-            { index === 0 &&
-              <Chapter.Title>{chapter.fullTitle}</Chapter.Title>
-            }
-            <PageContent page={page} />
-          </Page>
+          <PageWrapper key={page._key}>
+            <Page>
+              { index === 0 &&
+                <Chapter.Title>{chapter.fullTitle}</Chapter.Title>
+              }
+              <PageContent page={page} />
+            </Page>
+          </PageWrapper>
         )}
       </Chapter>
     );

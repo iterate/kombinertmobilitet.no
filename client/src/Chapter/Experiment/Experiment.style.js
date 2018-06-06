@@ -2,6 +2,10 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const OverviewPage = styled.div`
+  display: flex;
+  align-items: center;
+  height: 100vh;
+
   background-color: var(--light-gray);
   color: black;
   position: relative;
@@ -10,9 +14,8 @@ export const OverviewPage = styled.div`
 export const OverviewPageContent = styled.div`
   box-sizing: border-box;
   margin: auto;
-  padding: 250px 0;
+  padding-bottom: 200px;
   max-width: 700px;
-  height: 100vh;
 `;
 
 export const Title = styled.div`
