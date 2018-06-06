@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link as _Link } from 'react-router-dom';
 
 export const Navigation = styled.div`
   z-index: 5;
@@ -15,12 +16,13 @@ export const Navigation = styled.div`
   color: ${p => p.isAtSummary ? 'white' : 'black'};
 `;
 
-export const Link = styled.div`
-  cursor: pointer;
+export const Link = styled(_Link)`
+  display: block;
+  color: black;
 
   text-decoration: line-through;
 
-  &.active ~ div {
+  &.active ~ a {
     text-decoration: none;
   }
 
@@ -28,7 +30,7 @@ export const Link = styled.div`
     text-decoration: underline;
   }
 
-  ${p => p.isSubChapter &&
-    'margin-left: 2em;'
+  &.subchapter {
+    margin-left: 2em;
   }
 `;

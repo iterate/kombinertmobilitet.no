@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import Navigation from 'components/Navigation';
-import { Experiment } from 'Chapter/Experiment';
+import ExperimentSubChapter from 'Chapter/Experiment/Sub';
 
 import { appStore } from 'appStore';
 
@@ -13,17 +13,19 @@ export default class ChapterPage extends React.Component {
       content.experimentChapters
         .find(chapter => chapter.slug.current === params.chapterSlug);
 
-    console.log(`chapter`, chapter); // DEBUG
-
     if (!chapter) {
       return;
     }
 
     return (
       <Fragment>
-        <Navigation pageContent={content} />
+        <Navigation pageContent={content} openExperimentChapter={chapter} />
         {chapter.experiments.map(experiment =>
-          <Experiment key={experiment._key} experiment={experiment} />
+          <ExperimentSubChapter
+            key={experiment._key}
+            experiment={experiment}
+            chapter={experiment /* quick fix for withScroll */}
+          />
         )}
       </Fragment>
     );
