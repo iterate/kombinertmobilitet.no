@@ -18,7 +18,7 @@ export const Navigation = styled.div`
 
 export const Link = styled(_Link)`
   display: block;
-  color: black;
+  color: inherit;
 
   text-decoration: line-through;
 
