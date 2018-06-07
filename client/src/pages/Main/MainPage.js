@@ -28,7 +28,7 @@ export default class MainPage extends React.Component {
       .map(ReactDOM.findDOMNode)
       .sort(ascending(absScollOffset))
       .slice(0, 1)
-      .forEach(closestPage => closestPage.scrollIntoView({ behavior: 'smooth' }));
+      .forEach(closestPage => closestPage.scrollIntoView({ block: 'start', behavior: 'smooth' }));
   }
 
   render() {
