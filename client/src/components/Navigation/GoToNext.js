@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from './GoToNext.style.js';
 
-const isActive = (chapter) => chapter.slug.current === window.location.hash.split('#')[1];
+const isActive = (chapter) => `${chapter.slug.current}-0` === window.location.hash.split('#')[1];
 const following = (valid) => (_, index, array) => {
   if (index === 0) return false;
 
@@ -38,7 +38,7 @@ export default class GoToNext extends React.Component {
     }
 
     return (
-      <Link to={`#${next.slug.current}`}>
+      <Link to={`#${next.slug.current}-0`}>
         ↓ Videre
       </Link>
     );

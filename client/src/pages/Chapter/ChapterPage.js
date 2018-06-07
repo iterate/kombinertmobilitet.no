@@ -49,7 +49,6 @@ export default class ChapterPage extends React.Component {
           <ExperimentSubChapter
             key={experiment._key}
             experiment={experiment}
-            chapter={experiment /* quick fix for withScroll */}
             nodes={this.nodes}
           />
         )}

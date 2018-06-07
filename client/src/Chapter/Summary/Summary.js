@@ -1,6 +1,6 @@
 import React from 'react';
-import { withScroll } from '../withScroll.js'
-import { Chapter, PageWrapper, Page } from '../Chapter.style.js';
+import { Chapter } from '../Chapter.style.js';
+import Page from '../Page';
 import PageContent from 'components/PageContent';
 
 class SummaryChapter extends React.Component {
@@ -13,18 +13,16 @@ class SummaryChapter extends React.Component {
         ref={node => this.props.nodes[chapter.slug.current] = node}
       >
         {chapter.pages.map((page, index) =>
-          <PageWrapper key={page._key}>
-            <Page>
-              { index === 0 &&
-                <Chapter.Title>{chapter.fullTitle}</Chapter.Title>
-              }
-              <PageContent page={page} />
-            </Page>
-          </PageWrapper>
+          <Page hash={`${chapter.slug.current}-${index}`} key={page._key}>
+            { index === 0 &&
+              <Chapter.Title>{chapter.fullTitle}</Chapter.Title>
+            }
+            <PageContent page={page} />
+          </Page>
         )}
       </Chapter>
     );
   }
 }
 
-export default withScroll(SummaryChapter);
+export default SummaryChapter;

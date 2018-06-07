@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import * as N from './TableOfContents.style.js';
 
-const isActive = (chapter) => chapter.slug.current === window.location.hash.split('#')[1];
+const isActive = (chapter) => `${chapter.slug.current}-0` === window.location.hash.split('#')[1];
 
 export default class TableOfContents extends React.Component {
 
@@ -16,11 +16,11 @@ export default class TableOfContents extends React.Component {
   }
 
   linkTo = (chapter) => {
-    return `/#${chapter.slug.current}`;
+    return `/#${chapter.slug.current}-0`;
   }
 
   linkToSub = (chapter, subChapter) => {
-    return `/${chapter.slug.current}#${subChapter.slug.current}`;
+    return `/${chapter.slug.current}#${subChapter.slug.current}-0`;
   }
 
   render() {
