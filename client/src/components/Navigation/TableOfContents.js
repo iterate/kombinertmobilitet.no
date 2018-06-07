@@ -1,7 +1,8 @@
 import React, { Fragment } from 'react';
 import * as N from './TableOfContents.style.js';
 
-const isActive = (chapter) => `${chapter.slug.current}-0` === window.location.hash.split('#')[1];
+const slugName = () => window.location.hash.split('#').slice(-1)[0].split('-').slice(0, -1).join('-');
+const isActive = (chapter) => chapter.slug.current === slugName();
 
 export default class TableOfContents extends React.Component {
 

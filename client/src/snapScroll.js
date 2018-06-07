@@ -32,6 +32,11 @@ function scrollToClosest() {
     .slice(0, 1)
     .forEach(closestPage => {
       closestPage.scrollIntoView({ block: 'start', behavior: 'smooth' });
-      window.location.hash = getKeyIn(hashStore.nodeMap)(closestPage);
+
+      const hash = getKeyIn(hashStore.nodeMap)(closestPage);
+
+      if (hash) {
+        window.location.hash = hash;
+      }
     });
 }
