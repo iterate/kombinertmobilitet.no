@@ -38,7 +38,7 @@ export default class GoToNext extends React.Component {
     }
 
     return (
-      <Link to={`#${next.slug.current}-0`}>
+      <Link to={`#${next.slug.current}-0`} color={this.props.color}>
         ↓ Videre
       </Link>
     );

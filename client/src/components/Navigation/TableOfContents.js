@@ -25,10 +25,10 @@ export default class TableOfContents extends React.Component {
 
   render() {
     const { introChapters, experimentChapters, summaryChapters } = this.props.pageContent;
-    const { openExperimentChapter = void 0 } = this.props;
+    const { openExperimentChapter = void 0, color = 'white' } = this.props;
 
     return (
-      <N.Navigation isAtSummary={summaryChapters.some(isActive)}>
+      <N.Navigation color={color}>
         {introChapters.map(chapter => {
           return (
             <N.Link
