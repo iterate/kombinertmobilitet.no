@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from './GoToNext.style.js';
 
-const isActive = (chapter) => `${chapter.slug.current}-0` === window.location.hash.split('#')[1];
+const flatten = (arr, next) => arr.concat(next);
+
+const isActiveHash = (hash) => hash === window.location.hash.split('#')[1];
 const following = (valid) => (_, index, array) => {
   if (index === 0) return false;
 
@@ -12,33 +14,46 @@ const following = (valid) => (_, index, array) => {
 
 export default class GoToNext extends React.Component {
 
-  getNext() {
+  getNextHash() {
     const { openExperimentChapter = void 0 } = this.props;
 
     if (openExperimentChapter) {
       return openExperimentChapter
         .experiments
-        .find(following(isActive));
+        .map(experiment => experiment.pages.map((_, index) => `${experiment.slug.current}-${index}`))
+        .reduce(flatten, [])
+        .find(following(isActiveHash));
 
     } else {
       const { introChapters, experimentChapters, summaryChapters } = this.props.pageContent;
 
       return []
-        .concat(introChapters)
-        .concat(experimentChapters)
-        .concat(summaryChapters)
-        .find(following(isActive));
+        .concat(
+          introChapters
+            .map(chapter => chapter.pages.map((_, index) => `${chapter.slug.current}-${index}`))
+            .reduce(flatten, [])
+        )
+        .concat(
+          experimentChapters
+            .map(chapter => `${chapter.slug.current}-0`)
+        )
+        .concat(
+          summaryChapters
+            .map(chapter => chapter.pages.map((_, index) => `${chapter.slug.current}-${index}`))
+            .reduce(flatten, [])
+        )
+        .find(following(isActiveHash));
     }
   }
   render() {
-    const next = this.getNext();
+    const nextHash = this.getNextHash();
 
-    if (!next) {
+    if (!nextHash) {
       return false;
     }
 
     return (
-      <Link to={`#${next.slug.current}-0`} color={this.props.color}>
+      <Link to={`#${nextHash}`} color={this.props.color}>
         ↓ Videre
       </Link>
     );
