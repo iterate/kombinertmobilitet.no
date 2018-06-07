@@ -1,6 +1,8 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
 
+import { setHashedNode } from 'hashStore';
+
 const isActive = (hash) => hash === window.location.hash.split('#')[1];
 
 export default class HashScroller extends React.Component {
@@ -20,9 +22,13 @@ export default class HashScroller extends React.Component {
         .scrollIntoView({ block: 'start', behavior });
     }
   }
+  onRef = (node) => {
+    this.node = node;
+    setHashedNode(this.props.hash, node);
+  }
   render() {
     return (
-      <div ref={node => this.node = node}>
+      <div ref={this.onRef}>
         {this.props.children}
       </div>
     );

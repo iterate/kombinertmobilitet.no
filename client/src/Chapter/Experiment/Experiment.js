@@ -2,6 +2,8 @@ import React from 'react';
 import { OverviewPage, OverviewPageContent, Title, SubChapterLink, Star, Footer } from './Experiment.style.js';
 import HashScroller from 'components/HashScroller';
 
+import { setHashedNode, hashify } from 'hashStore';
+
 export default class ExperimentChapter extends React.Component {
   render() {
     const { index, chapter } = this.props;
@@ -9,7 +11,7 @@ export default class ExperimentChapter extends React.Component {
 
     return (
       <HashScroller hash={`${chapter.slug.current}-0`}>
-        <OverviewPage ref={node => this.props.nodes[chapter.slug.current] = node}>
+        <OverviewPage ref={node => setHashedNode(hashify(chapter.slug), node)}>
           <OverviewPageContent>
             <Title>{index + 1}. {fullTitle}</Title>
             {experiments.map(experiment =>

@@ -3,6 +3,8 @@ import { Chapter } from '../Chapter.style.js';
 import Page from '../Page';
 import PageContent from 'components/PageContent';
 
+import { hashify } from 'hashStore';
+
 export default class ExperimentSubChapter extends React.Component {
   render() {
     const { experiment } = this.props;
@@ -12,8 +14,7 @@ export default class ExperimentSubChapter extends React.Component {
         {experiment.pages.map((page, index) =>
           <Page
             key={page._key}
-            hash={`${experiment.slug.current}-${index}`}
-            ref={node => this.props.nodes[`${experiment.slug.current}-${index}`] = node}
+            hash={hashify(experiment.slug, index)}
           >
             { index === 0 &&
               <Chapter.Title>{experiment.fullTitle}</Chapter.Title>

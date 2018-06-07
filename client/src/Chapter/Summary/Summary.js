@@ -8,10 +8,7 @@ class SummaryChapter extends React.Component {
     const { chapter } = this.props;
 
     return (
-      <Chapter
-        className="summary"
-        ref={node => this.props.nodes[chapter.slug.current] = node}
-      >
+      <Chapter className="summary">
         {chapter.pages.map((page, index) =>
           <Page hash={`${chapter.slug.current}-${index}`} key={page._key}>
             { index === 0 &&

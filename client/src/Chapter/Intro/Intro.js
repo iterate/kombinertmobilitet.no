@@ -9,10 +9,7 @@ class IntroChapter extends React.Component {
     const { chapter } = this.props;
 
     return (
-      <Chapter
-        className="intro"
-        ref={node => this.props.nodes[chapter.slug.current] = node}
-      >
+      <Chapter className="intro">
         {chapter.pages.map((page, index) =>
           <Page
             hash={`${chapter.slug.current}-${index}`}
