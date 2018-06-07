@@ -7,19 +7,19 @@ export const withScroll = (Child) => {
 
   return class extends React.Component {
     componentDidMount() {
-      this.scrollIfMatch();
+      this.scrollIfMatch('instant');
     }
     componentDidUpdate() {
-      this.scrollIfMatch();
+      this.scrollIfMatch('smooth');
     }
-    scrollIfMatch = () => {
+    scrollIfMatch = (behavior) => {
       if (
         !!this.node &&
         isActive(this.props.chapter)
       ) {
         ReactDOM
           .findDOMNode(this.node)
-          .scrollIntoView();
+          .scrollIntoView({ block: 'start', behavior });
       }
     }
     render() {
