@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Mono:500|IBM+Plex+Sans');
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Mono:500|IBM+Plex+Sans:400,500');
 
 body {
   margin: 0;
@@ -7,6 +7,7 @@ body {
   --pastel-blue: #99adff;
   --light-gray: #f8f6f3;
   --turquoise-green: #00f576;
+  --butterscotch: #ffd240;
 
   --sans: 'IBM Plex Sans', sans-serif;
   --mono: 'IBM Plex Mono', monospace;

@@ -6,7 +6,7 @@ import PageContent from 'components/PageContent';
 class IntroChapter extends React.Component {
 
   render() {
-    const { chapter } = this.props;
+    const { chapter, index: chapterIndex } = this.props;
 
     return (
       <Chapter className="intro">
@@ -14,6 +14,7 @@ class IntroChapter extends React.Component {
           <Page
             hash={`${chapter.slug.current}-${index}`}
             key={page._key}
+            withColophon={chapterIndex === 0 && index === 0}
           >
             { index === 0 &&
               <Chapter.Title>{chapter.fullTitle}</Chapter.Title>

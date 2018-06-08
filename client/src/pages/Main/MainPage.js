@@ -12,8 +12,8 @@ export default class MainPage extends React.Component {
     return (
       <Fragment>
         <Navigation pageContent={content} />
-        {content.introChapters.map(chapter =>
-          <Chapter.Intro key={chapter._id} chapter={chapter} />
+        {content.introChapters.map((chapter, index) =>
+          <Chapter.Intro key={chapter._id} index={index} chapter={chapter} />
         )}
         {content.experimentChapters.map((chapter, index) =>
           <Chapter.Experiment key={chapter._id} index={index} chapter={chapter} />

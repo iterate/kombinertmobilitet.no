@@ -16,6 +16,13 @@ export { store as appStore };
 function apiCall() {
   return sanity.fetch(
     `*[_type == 'website'] | [0] {
+      colophon{
+        description,
+        infoLists[]{
+          title,
+          items,
+        },
+      },
       introChapters[]->{
         _id,
         menuTitle,

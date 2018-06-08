@@ -1,6 +1,7 @@
 import React from 'react';
 import * as S from './Chapter.style.js';
 import HashScroller from 'components/HashScroller';
+import Colophon from './Intro/Colophon';
 
 export default class Page extends React.Component {
   render() {
@@ -11,6 +12,9 @@ export default class Page extends React.Component {
             {this.props.children}
           </S.Page>
         </S.PageWrapper>
+        {this.props.withColophon &&
+          <Colophon />
+        }
       </HashScroller>
     );
   }

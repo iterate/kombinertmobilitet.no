@@ -10,6 +10,8 @@ import blockContent from './blockContent'; // TODO rename?
 import slideshowPage from './slideshowPage';
 import pollPage, { answerAlternative } from './pollPage';
 
+import colophon from './colophon';
+
 import website from './website';
 
 export default createSchema({
@@ -24,6 +26,8 @@ export default createSchema({
     pollPage,
     answerAlternative,
     blockContent,
+
+    colophon,
 
     website,
   ]),

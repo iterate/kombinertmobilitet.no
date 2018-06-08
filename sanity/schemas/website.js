@@ -4,6 +4,11 @@ export default {
   type: 'document',
   fields: [
     {
+      name: 'colophon',
+      title: 'Kolofon',
+      type: 'colophon',
+    },
+    {
       name: 'introChapters',
       title: 'Introkapitler',
       type: 'array',
