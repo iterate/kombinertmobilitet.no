@@ -1,3 +1,4 @@
+import { Redirect } from 'react-router-dom';
 import React, { Fragment } from 'react';
 import * as N from './TableOfContents.style.js';
 
@@ -27,6 +28,10 @@ export default class TableOfContents extends React.Component {
   render() {
     const { introChapters, experimentChapters, summaryChapters } = this.props.pageContent;
     const { openExperimentChapter = void 0, color = 'white' } = this.props;
+
+    if (window.location.hash.replace('#') === '' && introChapters[0]) {
+      return <Redirect to={`#${introChapters[0].slug.current}-0`} />;
+    }
 
     return (
       <N.Navigation color={color}>
