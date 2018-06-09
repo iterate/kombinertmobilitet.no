@@ -2,10 +2,12 @@ import styled from 'styled-components';
 
 export const BlockContent = styled.div`
   column-count: 2;
-`;
-export const Block = styled.div`
-  padding: 1em 0;
-`;
 
-export const Child = styled.span`
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.34;
+
+  a {
+    color: var(--ultramarine);
+  }
 `;

@@ -1,23 +1,20 @@
 import React from 'react';
 import * as B from './BlockContent.style.js';
 
-const BlockContent = ({ blockContent }) => (
+import BlockContent from '@sanity/block-content-to-react';
+
+const serializers = {
+  types: {
+    code: props => (
+      <pre data-language={props.node.language}>
+        <code>{props.node.code}</code>
+      </pre>
+    )
+  }
+}
+
+export default ({ blockContent }) => (
   <B.BlockContent>
-    {blockContent.content.map(block =>
-      <B.Block
-        key={block._key}
-        styleType={block.style}
-      >
-        {block.children.map(child =>
-          <B.Child
-            key={child._key}
-          >
-            {child.text}
-          </B.Child>
-        )}
-      </B.Block>
-    )}
+    <BlockContent blocks={blockContent.content} serializers={serializers} />
   </B.BlockContent>
 );
-
-export default BlockContent;
