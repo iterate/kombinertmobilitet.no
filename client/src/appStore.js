@@ -49,10 +49,7 @@ function apiCall() {
           description,
           wasCarriedOut,
           slug,
-          type,
-          period,
-          dataSetSize,
-          misc[]{
+          info[]{
             key,
             value,
           },

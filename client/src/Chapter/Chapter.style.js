@@ -52,3 +52,9 @@ export const SiteTitle = styled.div`
   font-size: 12px;
   font-weight: 500;
 `;
+
+export const FlexRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;

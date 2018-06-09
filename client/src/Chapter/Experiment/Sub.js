@@ -1,7 +1,8 @@
 import React from 'react';
-import { Chapter } from '../Chapter.style.js';
+import { Chapter, FlexRow } from '../Chapter.style.js';
 import Page from '../Page';
 import PageContent from 'components/PageContent';
+import Info from '../Info';
 
 import { hashify } from 'hashStore';
 
@@ -19,7 +20,12 @@ export default class ExperimentSubChapter extends React.Component {
             { index === 0 &&
               <Chapter.Title>{experiment.fullTitle}</Chapter.Title>
             }
-            <PageContent page={page} />
+            <FlexRow>
+              { index === 0 &&
+                <Info info={experiment.info} />
+              }
+              <PageContent page={page} />
+            </FlexRow>
           </Page>
         )}
       </Chapter>
