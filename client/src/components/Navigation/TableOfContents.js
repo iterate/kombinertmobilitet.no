@@ -31,7 +31,9 @@ export default class TableOfContents extends React.Component {
     const minY = 38;
     const maxY = window.innerHeight - this.height - minY - 28;
 
-    return minY + scrollProgress * maxY;
+    return this.props.openExperimentChapter
+      ? maxY
+      : minY + scrollProgress * maxY
   }
 
   linkTo = (chapter) => {
