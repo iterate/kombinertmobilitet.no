@@ -1,4 +1,5 @@
 import { Redirect } from 'react-router-dom';
+import ReactDOM from 'react-dom';
 import React, { Fragment } from 'react';
 import * as N from './TableOfContents.style.js';
 
@@ -9,12 +10,28 @@ export default class TableOfContents extends React.Component {
 
   componentDidMount() {
     window.addEventListener('hashchange', this.onChange);
+    window.addEventListener('scroll', this.onChange);
   }
   componentWillUnmount() {
     window.removeEventListener('hashchange', this.onChange);
+    window.removeEventListener('scroll', this.onChange);
   }
   onChange = () => {
     this.forceUpdate();
+  }
+
+  height = 300
+  onRef = (_node) => {
+    const node = ReactDOM.findDOMNode(_node);
+    this.height = node ? node.offsetHeight : 300;
+  }
+  getTop() {
+    const maxScroll = document.body.offsetHeight - window.innerHeight;
+    const scrollProgress = window.scrollY / maxScroll;
+    const minY = 38;
+    const maxY = window.innerHeight - this.height - minY - 28;
+
+    return minY + scrollProgress * maxY;
   }
 
   linkTo = (chapter) => {
@@ -34,7 +51,11 @@ export default class TableOfContents extends React.Component {
     }
 
     return (
-      <N.Navigation color={color}>
+      <N.Navigation
+        color={color}
+        ref={this.onRef}
+        top={this.getTop()}
+      >
         {introChapters.map(chapter => {
           return (
             <N.Link
