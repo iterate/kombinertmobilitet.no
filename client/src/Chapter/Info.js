@@ -19,7 +19,7 @@ const Info = ({ info }) => {
   return (
     <InfoBlock>
       {info.map(({ key, value }) =>
-        <InfoTuple>
+        <InfoTuple key={key}>
           {key}:<br/>
           {value}
         </InfoTuple>
