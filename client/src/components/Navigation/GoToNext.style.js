@@ -18,4 +18,8 @@ export const Link = styled(_Link)`
   mix-blend-mode: difference;
   transition: color 1s linear;
   color: ${p => p.color};
+
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
 `;
