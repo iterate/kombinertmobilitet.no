@@ -14,7 +14,7 @@ class IntroChapter extends React.Component {
           <Page
             hash={`${chapter.slug.current}-${index}`}
             key={page._key}
-            withColophon={chapterIndex === 0 && index === 0}
+            isFirstPage={chapterIndex === 0 && index === 0}
           >
             { index === 0 &&
               <Chapter.Title>{chapter.fullTitle}</Chapter.Title>

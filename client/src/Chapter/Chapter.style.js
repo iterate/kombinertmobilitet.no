@@ -27,6 +27,8 @@ export const PageWrapper = styled.div`
   height: 100vh;
   display: flex;
   align-items: center;
+
+  position: relative;
 `;
 
 export const Page = styled.div`
@@ -38,4 +40,15 @@ export const Page = styled.div`
   font-family: var(--sans);
   font-size: 16px;
   line-height: 1.34;
+`;
+
+export const SiteTitle = styled.div`
+  position: absolute;
+  top: 30px;
+  left: 41px;
+  color: black;
+
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
 `;
