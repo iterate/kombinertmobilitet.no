@@ -15,7 +15,7 @@ export const ButtonOpen = styled(Button)`
   position: absolute;
   bottom: 55px;
   left: 50%;
-  tranform: translate(-50%);
+  transform: translateX(-50%);
 `;
 
 export const Colophon = styled.div`
