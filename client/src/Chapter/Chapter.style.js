@@ -34,7 +34,7 @@ export const PageWrapper = styled.div`
 export const Page = styled.div`
   box-sizing: border-box;
   margin: auto;
-  padding-bottom: 200px;
+  padding-bottom: 8vh;
   max-width: 855px;
 
   font-family: var(--sans);

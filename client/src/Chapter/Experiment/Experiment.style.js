@@ -14,7 +14,7 @@ export const OverviewPage = styled.div`
 export const OverviewPageContent = styled.div`
   box-sizing: border-box;
   margin: auto;
-  padding-bottom: 200px;
+  padding-bottom: 8vh;
   max-width: 700px;
 `;
 
