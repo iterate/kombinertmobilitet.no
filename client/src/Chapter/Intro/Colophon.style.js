@@ -10,10 +10,11 @@ const Button = styled.button`
   font-family: var(--mono);
   font-size: 12px;
   font-weight: 500;
+  padding: 10px;
 `;
 export const ButtonOpen = styled(Button)`
   position: absolute;
-  bottom: 55px;
+  bottom: 45px;
   left: 50%;
   transform: translateX(-50%);
 `;
@@ -33,8 +34,8 @@ export const Colophon = styled.div`
 
 export const ButtonClose = styled(Button)`
   position: absolute;
-  right: 50px;
-  top: 49px;
+  right: 40px;
+  top: 39px;
 `;
 
 export const Center = styled.div`
