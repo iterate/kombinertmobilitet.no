@@ -1,12 +1,16 @@
+import { appStore } from 'appStore';
+
 import React from 'react';
-import { Chapter } from '../Chapter.style.js';
+import { Chapter, FlexRow } from '../Chapter.style.js';
 import Page from '../Page.js';
 import PageContent from 'components/PageContent';
+import Info from '../Info';
 
 class IntroChapter extends React.Component {
 
   render() {
     const { chapter, index: chapterIndex } = this.props;
+    const { info: projectInfo } = appStore.contentAsync.content;
 
     return (
       <Chapter className="intro">
@@ -19,7 +23,12 @@ class IntroChapter extends React.Component {
             { index === 0 &&
               <Chapter.Title>{chapter.fullTitle}</Chapter.Title>
             }
-            <PageContent page={page} />
+            <FlexRow>
+              { index === 0 &&
+                <Info info={projectInfo} />
+              }
+              <PageContent page={page} />
+            </FlexRow>
           </Page>
         )}
       </Chapter>

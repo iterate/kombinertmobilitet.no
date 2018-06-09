@@ -11,6 +11,7 @@ import slideshowPage from './slideshowPage';
 import pollPage, { answerAlternative } from './pollPage';
 
 import colophon from './colophon';
+import infoTuple from './infoTuple';
 
 import website from './website';
 
@@ -28,6 +29,7 @@ export default createSchema({
     blockContent,
 
     colophon,
+    infoTuple,
 
     website,
   ]),

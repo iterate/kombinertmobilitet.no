@@ -38,30 +38,7 @@ export default {
       title: 'Info',
       description: 'Vises som "Definisjon: Verdi"',
       type: 'array',
-      of: [{
-        type: 'object',
-        fields: [
-          {
-            name: 'key',
-            title: 'Definisjon',
-            type: 'string',
-          },
-          {
-            name: 'value',
-            title: 'Verdi',
-            type: 'string',
-          },
-        ],
-        preview: {
-          select: {
-            key: 'key',
-            value: 'value',
-          },
-          prepare: (s) => ({
-            title: `${s.key}: ${s.value}`
-          }),
-        },
-      }],
+      of: [{ type: 'infoTuple'}],
     },
 
     {

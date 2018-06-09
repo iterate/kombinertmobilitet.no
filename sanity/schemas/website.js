@@ -4,6 +4,12 @@ export default {
   type: 'document',
   fields: [
     {
+      name: 'info',
+      title: 'Prosjektinfo',
+      type: 'array',
+      of: [{ type: 'infoTuple' }],
+    },
+    {
       name: 'colophon',
       title: 'Kolofon',
       type: 'colophon',
