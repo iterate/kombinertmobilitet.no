@@ -55,11 +55,15 @@ export const Track = styled.div`
   display: flex;
 `;
 export const Slide = styled.div`
-  background-color: #d8d8d8;
 `;
-export const Image = styled.img`
+export const ImageWrapper = styled.div`
   width: 854px;
   height: 666px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+export const Image = styled.img`
 `;
 export const SubText = styled.div`
   font-family: var(--sans);

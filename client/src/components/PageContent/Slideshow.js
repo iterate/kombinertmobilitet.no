@@ -22,7 +22,9 @@ export default class Slideshow extends React.Component {
           <S.Track slideNo={this.state.slideNo}>
             {slideshow.slides.map(slide =>
               <S.Slide key={slide._key}>
-                <S.Image src={getImageUrl(slide.image).width(854).height(666).fit('scale').url()} />
+                <S.ImageWrapper>
+                  <S.Image src={getImageUrl(slide.image).width(854).height(666).fit('max').url()} />
+                </S.ImageWrapper>
                 <S.SubText>{slide.subtext}</S.SubText>
               </S.Slide>
             )}
