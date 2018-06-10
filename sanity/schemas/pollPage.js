@@ -32,9 +32,6 @@ export default {
       type: 'array',
       of: [{ type: 'answerAlternative' }],
     },
-    // * Question
-    // * Array of answers
-    // * ...
   ],
   preview: {
     select: {

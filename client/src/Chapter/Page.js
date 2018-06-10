@@ -7,7 +7,7 @@ export default class Page extends React.Component {
   render() {
     return (
       <HashScroller hash={this.props.hash}>
-        <S.PageWrapper>
+        <S.PageWrapper backgroundColor={this.props.backgroundColor}>
           <S.Page>
             {this.props.children}
           </S.Page>

@@ -1,12 +1,7 @@
 import React from 'react';
 import BlockContent from './BlockContent';
 import Slideshow from './Slideshow';
-
-const Poll = ({ poll }) => (
-  <div>
-    Poll!
-  </div>
-);
+import Poll from './Poll';
 
 const PageContent = ({ page }) => {
   switch (page._type) {

@@ -16,6 +16,7 @@ export default class ExperimentSubChapter extends React.Component {
           <Page
             key={page._key}
             hash={hashify(experiment.slug, index)}
+            backgroundColor={page._type === 'pollPage' ? 'var(--butterscotch)' : ''}
           >
             { index === 0 &&
               <Chapter.Title>{experiment.fullTitle}</Chapter.Title>

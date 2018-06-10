@@ -29,6 +29,7 @@ export const PageWrapper = styled.div`
   align-items: center;
 
   position: relative;
+  background-color: ${p => p.backgroundColor ? p.backgroundColor : 'transparent'};
 `;
 
 export const Page = styled.div`
