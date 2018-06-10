@@ -9,8 +9,8 @@ const PageContent = ({ page }) => {
       return <BlockContent blockContent={page} />;
     case 'slideshowPage':
       return <Slideshow slideshow={page} />;
-    case 'pollPage':
-      return <Poll poll={page} />;
+    case 'reference':
+      return <Poll pollId={page._ref} />;
     default:
       console.error(`Forgot ${page._type}?`);
   }

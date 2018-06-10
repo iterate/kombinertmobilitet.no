@@ -1,5 +1,12 @@
 import React from 'react';
 import * as S from './Poll.style.js';
+import {
+  pollStore,
+  getPollAsync,
+  getSubmitAsync,
+  fetchPoll,
+  submitAnswer,
+} from './pollStore';
 
 export default class Poll extends React.Component {
 
@@ -7,10 +14,36 @@ export default class Poll extends React.Component {
     selectedAns: void 0
   }
 
+  componentWillMount() {
+    fetchPoll(this.props.pollId);
+    pollStore.addListener(this.onChange);
+  }
+  componentWillUnmount() {
+    pollStore.removeListener(this.onChange);
+  }
+
+  onChange = () => {
+    this.forceUpdate();
+  }
+
+  willSelect = (ans) => () => {
+    this.setState({ selectedAns: ans });
+    window.clearTimeout(this.timeout);
+    this.timeout = window.setTimeout(this.saveToSanity, 1000);
+  }
+
+  saveToSanity = () => {
+    submitAnswer(this.props.pollId, this.state.selectedAns);
+  }
+
   render() {
-    const { poll } = this.props;
+    const { poll, req } = getPollAsync(this.props.pollId);
     const { selectedAns } = this.state;
-    const willSelect = (ans) => () => this.setState({ selectedAns: ans });
+
+    if (!poll) {
+      console.log(req);
+      return false;
+    }
 
     return (
       <S.Page>
@@ -22,7 +55,7 @@ export default class Poll extends React.Component {
             <S.Answer
               key={ans.text}
               selected={selectedAns === ans}
-              onClick={willSelect(ans)}
+              onClick={this.willSelect(ans)}
             >
               {ans.text}
             </S.Answer>
