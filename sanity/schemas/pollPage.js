@@ -17,9 +17,9 @@ export const answerAlternative = {
 };
 
 export default {
-  type: 'object',
+  type: 'document',
   name: 'pollPage',
-  title: 'Poll page',
+  title: 'Poll',
   fields: [
     {
       name: 'question',
