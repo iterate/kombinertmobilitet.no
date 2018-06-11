@@ -32,7 +32,7 @@ const Svg = styled.svg`
 `;
 const RadioButton = ({ selected }) => (
   <Svg width="16" height="16">
-    <circle cx="8" cy="8" r="6.5" fill="none" stroke="black" stroke-width="1.3" />
+    <circle cx="8" cy="8" r="6.5" fill="none" stroke="black" strokeWidth="1.3" />
     {selected &&
       <circle cx="8" cy="8" r="3.5" fill="black" />
     }
