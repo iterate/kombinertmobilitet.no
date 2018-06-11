@@ -1,7 +1,7 @@
 import { Listenable } from 'pockito';
 import REQ from 'util/REQ';
 
-const uuid = poll => `${poll._key}.${poll._rev}`;
+const uuid = poll => `${poll._id}.${poll._rev}`;
 
 const store = new Listenable({
   // uniValidator: shape({
