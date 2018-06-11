@@ -6,6 +6,7 @@
     "@sanity/block-content-to-react": "^1.3.9",
     "@sanity/client": "^0.132.0",
     "@sanity/image-url": "^0.132.0",
+    "firebase": "^5.0.4",
     "pockito": "^0.1.15",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",

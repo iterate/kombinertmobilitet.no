@@ -46,10 +46,9 @@ export default {
       title: 'Sider',
       type: 'array',
       of: [
-        { type: 'blockContent' }, // <-- TODO how does this turn out?
-        // { type: 'textPage' },
+        { type: 'blockContent' },
         { type: 'slideshowPage' },
-        { type: 'pollPage' },
+        { type: 'reference', to: { type: 'pollPage' } },
       ],
     },
   ],
