@@ -1,5 +1,13 @@
 import React from 'react';
 import * as S from './Poll.style.js';
+import {
+  addListener,
+  removeListener,
+  syncSubmittedAnswers,
+  unSyncSubmittedAnswers,
+  submitAnswer,
+  getStateFor,
+} from './pollStore';
 
 export default class Poll extends React.Component {
 
@@ -7,10 +15,34 @@ export default class Poll extends React.Component {
     selectedAns: void 0
   }
 
+  componentWillMount() {
+    syncSubmittedAnswers(this.props.poll);
+    addListener(this.props.poll, this.onChange);
+  }
+  componentWillUnmount() {
+    unSyncSubmittedAnswers(this.props.poll);
+    removeListener(this.props.poll, this.onChange);
+  }
+  onChange = () => {
+    this.forceUpdate();
+  }
+
+  willSelect = (ans) => () => {
+    this.setState({ selectedAns: ans });
+
+    window.clearTimeout(this.timeout);
+    this.timeout = window.setTimeout(
+      () => submitAnswer(this.props.poll, ans),
+      1000
+    );
+  }
+
   render() {
     const { poll } = this.props;
     const { selectedAns } = this.state;
-    const willSelect = (ans) => () => this.setState({ selectedAns: ans });
+    const { prevAnswersAsync, submitAnswerAsync } = getStateFor(this.props.poll);
+
+    console.log(`poll`, poll); // DEBUG
 
     return (
       <S.Page>
@@ -22,7 +54,7 @@ export default class Poll extends React.Component {
             <S.Answer
               key={ans.text}
               selected={selectedAns === ans}
-              onClick={willSelect(ans)}
+              onClick={this.willSelect(ans)}
             >
               {ans.text}
             </S.Answer>

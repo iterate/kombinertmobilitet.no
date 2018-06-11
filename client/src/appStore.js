@@ -57,7 +57,15 @@ function apiCall() {
             key,
             value,
           },
-          pages[],
+          pages[]{
+            _key,
+            _rev,
+            _type,
+            content[],
+            slides[],
+            question,
+            answerAlternatives[],
+          },
         },
       },
     }`
