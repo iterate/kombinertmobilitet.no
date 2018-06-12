@@ -46,15 +46,32 @@ export const Answer = ({ selected, onClick, children }) => (
   </Ans>
 );
 
-export const Result = styled.div``;
-export const Percentage = styled.div``;
-export const Count = styled.div``;
+export const Result = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.75;
+`;
+export const Percentage = styled.div`
+  margin-left: 10px;
+  min-width: 40px;
+  text-align: right;
+  color: black;
+`;
+export const Count = styled.div`
+  margin-left: 10px;
+  min-width: 20px;
+  text-align: right;
+  color: var(--bright-orange);
+`;
 
 const BarContainer = styled.div`
   position: relative;
   width: 422px;
   height: 18px;
-  box-sizing: border-box;
 
   border: 1.3px solid black;
 `;
