@@ -2,7 +2,7 @@ const sanityClient = require('@sanity/client');
 const token = require('./.sanityToken');
 
 module.exports = sanityClient({
-  projectId: 'dyub8zvy',
+  projectId: '19k70pzh',
   dataset: 'development',
   useCdn: true,
   token: token,
