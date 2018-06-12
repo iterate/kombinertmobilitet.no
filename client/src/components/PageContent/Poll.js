@@ -69,7 +69,7 @@ export default class Poll extends React.Component {
   render() {
     const { poll } = this.props;
     const { selectedAns } = this.state;
-    const { req, submittedAns } = getStateFor(this.props.poll).submitAnswerAsync;
+    const { req, answerText } = getStateFor(this.props.poll).submitAnswerAsync;
     const hasAnswered = req === REQ.SUCCESS;
 
     return (
@@ -81,8 +81,9 @@ export default class Poll extends React.Component {
           {poll.answerAlternatives.map(ans =>
             <S.Answer
               key={ans.text}
-              selected={(submittedAns || selectedAns) === ans}
-              onClick={this.willSelect(ans)}
+              selected={answerText === ans.text || selectedAns === ans}
+              onClick={hasAnswered ? void 0 : this.willSelect(ans)}
+              disabled={hasAnswered}
             >
               {ans.text}
               {hasAnswered &&

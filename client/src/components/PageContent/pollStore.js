@@ -27,7 +27,7 @@ const storage = {
       return;
     }
 
-    function isAnswered() {
+    function getAnswerText() {
       try {
         return window.localStorage.getItem(uuid(poll));
       } catch (e) {
@@ -36,18 +36,20 @@ const storage = {
       }
     }
 
-    if (isAnswered()) {
+    const answerText = getAnswerText();
+
+    if (answerText) {
       store.set({
         [uuid(poll)]: {
           ...store[uuid(poll)],
-          submitAnswerAsync: { req: REQ.SUCCESS }
+          submitAnswerAsync: { req: REQ.SUCCESS, answerText: answerText }
         }
       });
     }
   },
-  setIsAnswered(poll) {
+  setIsAnswered(poll, answer) {
     try {
-      window.localStorage.setItem(uuid(poll), true);
+      window.localStorage.setItem(uuid(poll), answer.text);
     } catch (e) {
       // Could not write to localStorage
     }
@@ -110,7 +112,6 @@ export function syncSubmittedAnswers(poll) {
         req: REQ.SUCCESS,
         answerMap: aggregated,
       });
-      storage.setIsAnswered(poll);
     });
     // TODO REQ.ERROR ?
 }
@@ -142,7 +143,8 @@ export function submitAnswer(poll, answer) {
     })
     .then(
       () => {
-        update({ req: REQ.SUCCESS })
+        update({ req: REQ.SUCCESS, answerText: answer.text });
+        storage.setIsAnswered(poll, answer);
       },
       (error) => {
         update({ req: REQ.ERROR })

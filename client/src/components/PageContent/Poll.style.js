@@ -23,6 +23,7 @@ const Ans = styled.li`
 
   position: relative;
   cursor: pointer;
+  ${p => p.disabled ? 'cursor: initial' : ''};
 `;
 
 const Svg = styled.svg`
@@ -39,8 +40,8 @@ const RadioButton = ({ selected }) => (
   </Svg>
 );
 
-export const Answer = ({ selected, onClick, children }) => (
-  <Ans onClick={onClick}>
+export const Answer = ({ selected, onClick, disabled, children }) => (
+  <Ans onClick={onClick} disabled={disabled}>
     <RadioButton selected={selected} />
     {children}
   </Ans>
