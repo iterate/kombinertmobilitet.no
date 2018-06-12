@@ -101,7 +101,12 @@ export function submitAnswer(poll, answer) {
       answer: answer
     })
     .then(
-      () => update({ req: REQ.SUCCESS }),
-      () => update({ req: REQ.ERROR }),
+      () => {
+        update({ req: REQ.SUCCESS })
+      },
+      (error) => {
+        update({ req: REQ.ERROR })
+        console.error(`error`, error);
+      },
     );
 }
