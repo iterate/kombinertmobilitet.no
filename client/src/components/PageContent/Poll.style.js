@@ -45,3 +45,31 @@ export const Answer = ({ selected, onClick, children }) => (
     {children}
   </Ans>
 );
+
+export const Result = styled.div``;
+export const Percentage = styled.div``;
+export const Count = styled.div``;
+
+const BarContainer = styled.div`
+  position: relative;
+  width: 422px;
+  height: 18px;
+  box-sizing: border-box;
+
+  border: 1.3px solid black;
+`;
+const BarFilled = styled.div`
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: ${p => 100 - p.percentage}%;
+
+  background-color: black;
+`;
+
+export const Bar = ({ percentage }) => (
+  <BarContainer>
+    <BarFilled percentage={percentage} />
+  </BarContainer>
+);

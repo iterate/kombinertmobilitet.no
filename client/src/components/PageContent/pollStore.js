@@ -18,9 +18,46 @@ const store = new Listenable({
   // }),
 });
 
+// localStorage sync to remember which polls were answered on previous visits in this browser
+const storage = {
+  checkIfPollWasAnswered(poll) {
+    const storeKnows = getStateFor(poll).submitAnswerAsync.req === REQ.SUCCESS;
+
+    if (storeKnows) {
+      return;
+    }
+
+    function isAnswered() {
+      try {
+        return window.localStorage.getItem(uuid(poll));
+      } catch (e) {
+        // Could not read from localStorage
+        return true; // Don't let users without localStorage submit answers, just show statistics
+      }
+    }
+
+    if (isAnswered()) {
+      store.set({
+        [uuid(poll)]: {
+          ...store[uuid(poll)],
+          submitAnswerAsync: { req: REQ.SUCCESS }
+        }
+      });
+    }
+  },
+  setIsAnswered(poll) {
+    try {
+      window.localStorage.setItem(uuid(poll), true);
+    } catch (e) {
+      // Could not write to localStorage
+    }
+  },
+};
+
 // Listening
 export function addListener(poll, listener) {
   store.addListener(listener, uuid(poll));
+  storage.checkIfPollWasAnswered(poll);
 }
 export function removeListener(poll, listener) {
   store.removeListener(listener, uuid(poll));
@@ -28,15 +65,19 @@ export function removeListener(poll, listener) {
 
 // Selector
 export function getStateFor(poll) {
-  return store[uuid(poll)] || {
-    prevAnswersAsync: { req: REQ.INIT },
-    submitAnswerAsync: { req: REQ.INIT },
+  const {
+    prevAnswersAsync = { req: REQ.INIT },
+    submitAnswerAsync = { req: REQ.INIT },
+  } = store[uuid(poll)] || {};
+
+  return {
+    prevAnswersAsync,
+    submitAnswerAsync,
   };
 }
 
 // Async actions
 export function syncSubmittedAnswers(poll) {
-  console.log(`sync:`, uuid(poll)); // DEBUG
 
   const update = (obj) => store.set({
     [uuid(poll)]: {
@@ -52,15 +93,15 @@ export function syncSubmittedAnswers(poll) {
     .ref('polls')
     .child(poll._id)
     .on('value', (snap) => {
-      const allAnswers = idByKey(snap.val() || {});
+      const allEntries = idByKey(snap.val() || {});
       const aggregated =
-        allAnswers
-          .filter(ans => ans._rev === poll._rev)
-          .reduce((map, ans) => {
-            if (map[ans.text]) {
-              map[ans.text]++;
+        allEntries
+          .filter(entry => entry._rev === poll._rev)
+          .reduce((map, entry) => {
+            if (map[entry.answer.text]) {
+              map[entry.answer.text]++;
             } else {
-              map[ans.text] = 1;
+              map[entry.answer.text] = 1;
             }
             return map;
           }, {});
@@ -69,11 +110,11 @@ export function syncSubmittedAnswers(poll) {
         req: REQ.SUCCESS,
         answerMap: aggregated,
       });
+      storage.setIsAnswered(poll);
     });
     // TODO REQ.ERROR ?
 }
 export function unSyncSubmittedAnswers(poll) {
-  console.log(`unsync:`, uuid(poll)); // DEBUG
 
   firebase
     .database()
@@ -83,12 +124,11 @@ export function unSyncSubmittedAnswers(poll) {
 }
 
 export function submitAnswer(poll, answer) {
-  console.log(`submit:`, uuid(poll), answer); // DEBUG
 
   const update = (obj) => store.set({
     [uuid(poll)]: {
       ...store[uuid(poll)],
-      prevAnswersAsync: obj
+      submitAnswerAsync: obj
     }
   });
 

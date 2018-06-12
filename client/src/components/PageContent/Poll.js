@@ -1,5 +1,6 @@
 import React from 'react';
 import * as S from './Poll.style.js';
+import REQ from 'util/REQ';
 import {
   addListener,
   removeListener,
@@ -8,6 +9,34 @@ import {
   submitAnswer,
   getStateFor,
 } from './pollStore';
+
+const sumTotal = (sum, next) => sum + next;
+
+class ResultThingy extends React.Component {
+
+  render() {
+    const { poll, ans } = this.props;
+    const { req, answerMap } = getStateFor(poll).prevAnswersAsync;
+
+    if (req !== REQ.SUCCESS) {
+      console.log('TODO');
+      return false;
+    }
+
+    const totalAnswerCount = Object.values(answerMap).reduce(sumTotal, 0);
+    const getCount = text => answerMap[text];
+    const getPercentage = text => 100 * answerMap[text] / totalAnswerCount;
+    const getPercentageString = text => Math.round(getPercentage(text), 0) + ' %';
+
+    return (
+      <S.Result>
+        <S.Bar percentage={getPercentage(ans.text)} />
+        <S.Percentage>{getPercentageString(ans.text)}</S.Percentage>
+        <S.Count>{getCount(ans.text)}</S.Count>
+      </S.Result>
+    );
+  }
+}
 
 export default class Poll extends React.Component {
 
@@ -40,9 +69,8 @@ export default class Poll extends React.Component {
   render() {
     const { poll } = this.props;
     const { selectedAns } = this.state;
-    const { prevAnswersAsync, submitAnswerAsync } = getStateFor(this.props.poll);
-
-    console.log(`poll`, poll); // DEBUG
+    const { req, submittedAns } = getStateFor(this.props.poll).submitAnswerAsync;
+    const hasAnswered = req === REQ.SUCCESS;
 
     return (
       <S.Page>
@@ -53,10 +81,13 @@ export default class Poll extends React.Component {
           {poll.answerAlternatives.map(ans =>
             <S.Answer
               key={ans.text}
-              selected={selectedAns === ans}
+              selected={(submittedAns || selectedAns) === ans}
               onClick={this.willSelect(ans)}
             >
               {ans.text}
+              {hasAnswered &&
+                <ResultThingy poll={poll} ans={ans} />
+              }
             </S.Answer>
           )}
         </S.Answers>
