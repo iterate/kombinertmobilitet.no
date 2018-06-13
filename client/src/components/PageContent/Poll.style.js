@@ -93,6 +93,15 @@ export const Count = styled.div`
   color: var(--bright-orange);
 `;
 
+const appearX = keyframes`
+  from {
+    max-width: 0%;
+  }
+  to {
+    max-width: 100%;
+  }
+`;
+
 const BarContainer = styled.div`
   position: relative;
   width: 422px;
@@ -110,10 +119,16 @@ const BarFilled = styled.div`
   left: 0;
   top: 0;
   bottom: 0;
-  right: ${p => 100 - p.percentage}%;
+  width: ${p => p.percentage}%
   box-sizing: border-box;
 
   background-color: black;
+
+  animation-name: ${appearX};
+  animation-delay: 600ms;
+  animation-duration: 3s;
+  animation-fill-mode: both;
+  animation-timing-function: linear;
 `;
 
 export const Bar = ({ percentage }) => (
