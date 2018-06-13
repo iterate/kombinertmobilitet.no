@@ -20,7 +20,7 @@ export default class GoToNext extends React.Component {
     if (openExperimentChapter) {
       return openExperimentChapter
         .experiments
-        .map(experiment => experiment.pages.map((_, index) => `${experiment.slug.current}-${index}`))
+        .map(experiment => (experiment.pages || []).map((_, index) => `${experiment.slug.current}-${index}`))
         .reduce(flatten, [])
         .find(following(isActiveHash));
 

@@ -12,7 +12,7 @@ export default class ExperimentSubChapter extends React.Component {
 
     return (
       <Chapter className="experiment">
-        {experiment.pages.map((page, index) =>
+        {(experiment.pages || []).map((page, index) =>
           <Page
             key={page._key}
             hash={hashify(experiment.slug, index)}
