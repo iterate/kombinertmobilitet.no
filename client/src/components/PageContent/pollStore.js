@@ -6,17 +6,7 @@ import 'firebase/database';
 const uuid = poll => `${poll._id}.${poll._rev}`;
 const idByKey = snap => Object.keys(snap).map(key => ({ id: key, ...snap[key] }));
 
-const store = new Listenable({
-  // uniValidator: shape({
-  //   prevAnswersAsync: shape({
-  //     req: oneOf(Object.values(REQ)),
-  //     answers: arrayOf(shape({
-
-  //     }))
-  //   })
-  //   submitAsync:
-  // }),
-});
+const store = new Listenable();
 
 // localStorage sync to remember which polls were answered on previous visits in this browser
 const storage = {
