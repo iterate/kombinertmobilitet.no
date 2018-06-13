@@ -83,16 +83,16 @@ export function syncSubmittedAnswers(poll) {
     .database()
     .ref('polls')
     .child(poll._id)
+    .child(poll._rev)
     .on('value', (snap) => {
       const allEntries = idByKey(snap.val() || {});
       const aggregated =
         allEntries
-          .filter(entry => entry._rev === poll._rev)
-          .reduce((map, entry) => {
-            if (map[entry.answer.text]) {
-              map[entry.answer.text]++;
+          .reduce((map, answer) => {
+            if (map[answer.text]) {
+              map[answer.text]++;
             } else {
-              map[entry.answer.text] = 1;
+              map[answer.text] = 1;
             }
             return map;
           }, {});
@@ -110,6 +110,7 @@ export function unSyncSubmittedAnswers(poll) {
     .database()
     .ref('polls')
     .child(poll._id)
+    .child(poll._rev)
     .off('value');
 }
 
@@ -126,10 +127,8 @@ export function submitAnswer(poll, answer) {
     .database()
     .ref('polls')
     .child(poll._id)
-    .push({
-      _rev: poll._rev,
-      answer: answer
-    })
+    .child(poll._rev)
+    .push(answer)
     .then(
       () => {
         update({ req: REQ.SUCCESS, answerText: answer.text });

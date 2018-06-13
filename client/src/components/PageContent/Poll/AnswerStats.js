@@ -16,7 +16,6 @@ class ResultThingy extends React.Component {
   componentDidMount() {
     this.timeout = setTimeout(() => {
       this.interval = setInterval(this.update, 30);
-      this.timeout = setTimeout(() => clearInterval(this.interval), 30 * 99.5);
     }, 600);
   }
   componentWillUnmount() {
@@ -30,15 +29,21 @@ class ResultThingy extends React.Component {
 
     const totalAnswerCount = Object.values(answerMap).reduce(sumTotal, 0);
 
+    const getCount = ans => answerMap[ans.text] || 0;
+
     const actual = {
-      count:  answerMap[ans.text],
-      percentage: 100 * answerMap[ans.text] / totalAnswerCount,
+      count:  getCount(ans),
+      percentage: 100 * getCount(ans) / (totalAnswerCount || 1),
     };
 
     this.maxPercent++;
 
+    if (this.maxPercent === 100) {
+      clearInterval(this.interval);
+    }
+
     const percentage = Math.min(this.maxPercent, actual.percentage);
-    const count = Math.round(actual.count * (percentage / actual.percentage));
+    const count = Math.round(actual.count * (percentage / (actual.percentage || 1)));
     const percentageString = Math.round(percentage, 0) + ' %';
 
     this.setState({
