@@ -1,7 +1,6 @@
 import { Listenable } from 'pockito';
 import REQ from 'util/REQ';
 import firebase from 'firebase/app';
-import 'firebase/database';
 
 const uuid = poll => `${poll._id}.${poll._rev}`;
 const idByKey = snap => Object.keys(snap).map(key => ({ id: key, ...snap[key] }));
