@@ -48,6 +48,7 @@ export default {
       of: [
         { type: 'blockContent' },
         { type: 'slideshowPage' },
+        { type: 'quotePage' },
         { type: 'reference', to: { type: 'pollPage' } },
       ],
     },

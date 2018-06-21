@@ -6,7 +6,8 @@ import summaryChapter from './summaryChapter';
 
 import experimentChapter from './experimentChapter';
 import experiment from './experiment';
-import blockContent from './blockContent'; // TODO rename?
+import blockContent from './blockContent';
+import quotePage from './quotePage';
 import slideshowPage from './slideshowPage';
 import pollPage, { answerAlternative } from './pollPage';
 
@@ -27,6 +28,7 @@ export default createSchema({
     pollPage,
     answerAlternative,
     blockContent,
+    quotePage,
 
     colophon,
     infoTuple,

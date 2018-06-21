@@ -1,6 +1,7 @@
 import React from 'react';
 import BlockContent from './BlockContent';
 import Slideshow from './Slideshow';
+import QuotePage from './QuotePage';
 import Poll from './Poll';
 import Reference from './Reference';
 
@@ -13,6 +14,8 @@ export default class PageContent extends React.Component {
         return <BlockContent blockContent={page} />;
       case 'slideshowPage':
         return <Slideshow slideshow={page} />;
+      case 'quotePage':
+        return <QuotePage quotePage={page} />;
       case 'pollPage':
         return <Poll poll={page} />;
       case 'reference':
