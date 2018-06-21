@@ -18,6 +18,7 @@ export default class Navigation extends React.Component {
       ? { color: 'black' }
       : {
         mixBlendMode: 'difference',
+        backgroundColor: 'black',
         color: atExperiment && 'var(--light-gray)'
           || atSummary && 'white'
           || 'white',
