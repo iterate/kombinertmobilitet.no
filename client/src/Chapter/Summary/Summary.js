@@ -10,7 +10,11 @@ class SummaryChapter extends React.Component {
     return (
       <Chapter className="summary">
         {chapter.pages.map((page, index) =>
-          <Page hash={`${chapter.slug.current}-${index}`} key={page._key}>
+          <Page
+            hash={`${chapter.slug.current}-${index}`}
+            key={page._key}
+            backgroundColor={page._type === 'reference' ? 'var(--butterscotch)' : ''}
+            >
             { index === 0 &&
               <Chapter.Title>{chapter.fullTitle}</Chapter.Title>
             }

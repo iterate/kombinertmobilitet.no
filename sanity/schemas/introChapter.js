@@ -31,6 +31,7 @@ export default {
       of: [
         { type: 'blockContent' },
         { type: 'slideshowPage' },
+        { type: 'reference', to: { type: 'pollPage' } },
       ],
     },
   ],

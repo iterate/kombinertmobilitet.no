@@ -19,6 +19,7 @@ class IntroChapter extends React.Component {
             hash={`${chapter.slug.current}-${index}`}
             key={page._key}
             isFirstPage={chapterIndex === 0 && index === 0}
+            backgroundColor={page._type === 'reference' ? 'var(--butterscotch)' : ''}
           >
             { index === 0 &&
               <Chapter.Title>{chapter.fullTitle}</Chapter.Title>
