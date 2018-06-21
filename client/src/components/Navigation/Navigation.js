@@ -6,7 +6,7 @@ const slugName = () => window.location.hash.split('#').slice(-1)[0].split('-').s
 const isActive = (chapter) => chapter.slug.current === slugName();
 
 export default class Navigation extends React.Component {
-  render() {
+  getFancyColorStyle() {
     const { introChapters, experimentChapters, summaryChapters } = this.props.pageContent;
 
     const atIntro = introChapters.some(isActive);
@@ -14,15 +14,24 @@ export default class Navigation extends React.Component {
     const atSummary = summaryChapters.some(isActive);
 
     /* eslint-disable no-mixed-operators */
-    const color = atIntro && 'var(--pastel-blue)'
-      || atExperiment && 'var(--light-gray)'
-      || atSummary && 'white'
-      || 'white';
+    return {
+      mixBlendMode: 'difference',
+      color: atIntro && 'var(--pastel-blue)'
+        || atExperiment && 'var(--light-gray)'
+        || atSummary && 'white'
+        || 'white',
+      transition: 'color 1s linear',
+    };
+  }
+  render() {
+
+    const isOnExperimentPage = Boolean(this.props.openExperimentChapter);
+    const style = isOnExperimentPage ? { color: 'black' } : this.getFancyColorStyle();
 
     return (
       <Fragment>
-        <TableOfContents color={color} {...this.props} />
-        <GoToNext color={color} {...this.props} />
+        <TableOfContents style={style} {...this.props} />
+        <GoToNext style={style} {...this.props} />
       </Fragment>
     );
   }

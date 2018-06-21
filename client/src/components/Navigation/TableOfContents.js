@@ -46,7 +46,7 @@ export default class TableOfContents extends React.Component {
 
   render() {
     const { introChapters, experimentChapters, summaryChapters } = this.props.pageContent;
-    const { openExperimentChapter = void 0, color = 'white' } = this.props;
+    const { openExperimentChapter = void 0, style } = this.props;
 
     if (window.location.hash.replace('#') === '' && introChapters[0]) {
       return <Redirect to={`#${introChapters[0].slug.current}-0`} />;
@@ -54,7 +54,7 @@ export default class TableOfContents extends React.Component {
 
     return (
       <N.Navigation
-        color={color}
+        style={style}
         ref={this.onRef}
         top={this.getTop()}
       >

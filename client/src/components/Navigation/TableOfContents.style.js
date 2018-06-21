@@ -12,10 +12,6 @@ export const Navigation = styled.div`
   font-weight: 500;
   font-size: 12px;
   line-height: 1.79;
-
-  mix-blend-mode: difference;
-  transition: color 1s linear;
-  color: ${p => p.color};
 `;
 
 export const Link = styled(_Link)`

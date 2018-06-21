@@ -53,7 +53,7 @@ export default class GoToNext extends React.Component {
     }
 
     return (
-      <Link to={`#${nextHash}`} color={this.props.color}>
+      <Link to={`#${nextHash}`} style={this.props.style}>
         ↓ Videre
       </Link>
     );
