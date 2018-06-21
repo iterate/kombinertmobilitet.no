@@ -14,14 +14,15 @@ export default class Navigation extends React.Component {
     const atSummary = summaryChapters.some(isActive);
 
     /* eslint-disable no-mixed-operators */
-    return {
-      mixBlendMode: 'difference',
-      color: atIntro && 'var(--pastel-blue)'
-        || atExperiment && 'var(--light-gray)'
-        || atSummary && 'white'
-        || 'white',
-      transition: 'color 1s linear',
-    };
+    return atIntro
+      ? { color: 'black' }
+      : {
+        mixBlendMode: 'difference',
+        color: atExperiment && 'var(--light-gray)'
+          || atSummary && 'white'
+          || 'white',
+        transition: 'color 1s linear',
+      };
   }
   render() {
 
