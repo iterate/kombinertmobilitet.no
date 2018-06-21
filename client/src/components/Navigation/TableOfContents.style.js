@@ -6,7 +6,6 @@ export const Navigation = styled.div`
 
   position: fixed;
   left: 41px;
-  top: ${p => p.top}px;
 
   font-family: var(--mono);
   font-weight: 500;

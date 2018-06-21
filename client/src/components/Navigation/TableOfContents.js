@@ -25,15 +25,16 @@ export default class TableOfContents extends React.Component {
     const node = ReactDOM.findDOMNode(_node);
     this.height = node ? node.offsetHeight : 300;
   }
-  getTop() {
+  getStyle() {
     const maxScroll = document.body.offsetHeight - window.innerHeight;
     const scrollProgress = window.scrollY / maxScroll;
     const minY = 38;
     const maxY = window.innerHeight - this.height - minY - 28;
 
     return this.props.openExperimentChapter
-      ? maxY
-      : minY + scrollProgress * maxY
+      ? { top: maxY, transition: 'top 100ms linear' }
+      : { top: `${minY + scrollProgress * maxY}px` }
+    ;
   }
 
   linkTo = (chapter) => {
@@ -54,9 +55,8 @@ export default class TableOfContents extends React.Component {
 
     return (
       <N.Navigation
-        style={style}
+        style={{ ...style, ...this.getStyle() }}
         ref={this.onRef}
-        top={this.getTop()}
       >
         {introChapters.map(chapter => {
           return (
