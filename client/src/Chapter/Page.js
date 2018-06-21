@@ -11,9 +11,8 @@ export default class Page extends React.Component {
           <S.Page>
             {this.props.children}
           </S.Page>
-          {this.props.isFirstPage
-            ? <Colophon />
-            : <S.SiteTitle>Refleksjoner rundt kombinert mobilitet</S.SiteTitle>
+          {this.props.isFirstPage &&
+            <Colophon />
           }
         </S.PageWrapper>
       </HashScroller>

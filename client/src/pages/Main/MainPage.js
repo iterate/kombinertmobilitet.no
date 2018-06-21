@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import SiteTitle from './SiteTitle';
 import Navigation from 'components/Navigation';
 import Chapter from 'Chapter';
 
@@ -11,6 +12,7 @@ export default class MainPage extends React.Component {
 
     return (
       <Fragment>
+        <SiteTitle />
         <Navigation pageContent={content} />
         {content.introChapters.map((chapter, index) =>
           <Chapter.Intro key={chapter._id} index={index} chapter={chapter} />

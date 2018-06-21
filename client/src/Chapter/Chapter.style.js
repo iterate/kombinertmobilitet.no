@@ -43,17 +43,6 @@ export const Page = styled.div`
   line-height: 1.34;
 `;
 
-export const SiteTitle = styled.div`
-  position: absolute;
-  top: 30px;
-  left: 41px;
-  color: black;
-
-  font-family: var(--mono);
-  font-size: 12px;
-  font-weight: 500;
-`;
-
 export const FlexRow = styled.div`
   display: flex;
   flex-direction: row;
