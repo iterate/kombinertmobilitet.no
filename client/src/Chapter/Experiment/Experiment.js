@@ -2,8 +2,6 @@ import React from 'react';
 import { OverviewPage, OverviewPageContent, Title, SubChapterLink, Star, Footer } from './Experiment.style.js';
 import HashScroller from 'components/HashScroller';
 
-import { setHashedNode, hashify } from 'hashStore';
-
 export default class ExperimentChapter extends React.Component {
   render() {
     const { index, chapter } = this.props;
