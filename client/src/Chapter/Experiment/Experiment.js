@@ -11,7 +11,7 @@ export default class ExperimentChapter extends React.Component {
 
     return (
       <HashScroller hash={`${chapter.slug.current}-0`}>
-        <OverviewPage ref={node => setHashedNode(hashify(chapter.slug), node)}>
+        <OverviewPage>
           <OverviewPageContent>
             <Title>{index + 1}. {fullTitle}</Title>
             {experiments.map(experiment =>
