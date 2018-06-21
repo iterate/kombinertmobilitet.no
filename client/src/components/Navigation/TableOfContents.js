@@ -25,16 +25,26 @@ export default class TableOfContents extends React.Component {
     const node = ReactDOM.findDOMNode(_node);
     this.height = node ? node.offsetHeight : 300;
   }
-  getStyle() {
+  getTopStyle() {
     const maxScroll = document.body.offsetHeight - window.innerHeight;
     const scrollProgress = window.scrollY / maxScroll;
     const minY = 38;
     const maxY = window.innerHeight - this.height - minY - 28;
 
-    return this.props.openExperimentChapter
-      ? { top: maxY, transition: 'top 100ms linear' }
-      : { top: `${minY + scrollProgress * maxY}px` }
-    ;
+    return {
+      top: `${minY + scrollProgress * maxY}px`,
+      transition: 'top 200ms linear'
+    };
+  }
+  getMergedStyle() {
+    const { transition: topTransition, ...topStyle } = this.getTopStyle();
+    const { transition: colorTransition, ...colorStyle } = this.props.style;
+
+    return {
+      ...colorStyle,
+      ...topStyle,
+      transition: `${topTransition}, ${colorTransition}`,
+    };
   }
 
   linkTo = (chapter) => {
@@ -47,7 +57,7 @@ export default class TableOfContents extends React.Component {
 
   render() {
     const { introChapters, experimentChapters, summaryChapters } = this.props.pageContent;
-    const { openExperimentChapter = void 0, style } = this.props;
+    const { openExperimentChapter = void 0 } = this.props;
 
     if (window.location.hash.replace('#') === '' && introChapters[0]) {
       return <Redirect to={`#${introChapters[0].slug.current}-0`} />;
@@ -55,7 +65,7 @@ export default class TableOfContents extends React.Component {
 
     return (
       <N.Navigation
-        style={{ ...style, ...this.getStyle() }}
+        style={this.getMergedStyle()}
         ref={this.onRef}
       >
         {introChapters.map(chapter => {

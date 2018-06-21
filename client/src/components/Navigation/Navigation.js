@@ -19,7 +19,10 @@ export default class Navigation extends React.Component {
         color: 'white',
         transition: 'color 1s linear',
       }
-      : { color: 'black' }
+      : {
+        color: 'black',
+        transition: 'color 1s linear',
+      }
     ;
   }
   render() {
