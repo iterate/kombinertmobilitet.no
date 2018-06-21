@@ -6,29 +6,24 @@ const slugName = () => window.location.hash.split('#').slice(-1)[0].split('-').s
 const isActive = (chapter) => chapter.slug.current === slugName();
 
 export default class Navigation extends React.Component {
-  getFancyColorStyle() {
-    const { introChapters, experimentChapters, summaryChapters } = this.props.pageContent;
+  getColorStyle() {
+    const { summaryChapters } = this.props.pageContent;
 
-    const atIntro = introChapters.some(isActive);
-    const atExperiment = experimentChapters.some(isActive);
     const atSummary = summaryChapters.some(isActive);
 
     /* eslint-disable no-mixed-operators */
-    return atIntro
-      ? { color: 'black' }
-      : {
+    return atSummary
+      ? {
         mixBlendMode: 'difference',
         backgroundColor: 'black',
-        color: atExperiment && 'var(--light-gray)'
-          || atSummary && 'white'
-          || 'white',
+        color: 'white',
         transition: 'color 1s linear',
-      };
+      }
+      : { color: 'black' }
+    ;
   }
   render() {
-
-    const isOnExperimentPage = Boolean(this.props.openExperimentChapter);
-    const style = isOnExperimentPage ? { color: 'black' } : this.getFancyColorStyle();
+    const style = this.getColorStyle();
 
     return (
       <Fragment>
