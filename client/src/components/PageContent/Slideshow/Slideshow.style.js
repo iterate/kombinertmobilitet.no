@@ -13,6 +13,7 @@ export const Progress = styled.span`
   position: absolute;
   top: 650px;
   right: 0;
+  transform: translateX(150%);
 `;
 
 export const Container = styled.div`
@@ -66,6 +67,7 @@ export const ImageWrapper = styled.div`
 export const Image = styled.img`
 `;
 export const SubText = styled.div`
+  margin-top: 20px;
   font-family: var(--sans);
   font-size: 16px;
   line-height: 1.34;
