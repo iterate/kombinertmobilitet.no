@@ -40,9 +40,22 @@ const RadioButton = ({ selected }) => (
   </Svg>
 );
 
-export const Answer = ({ selected, onClick, disabled, children }) => (
+export const Answer = ({ selected, onClick, disabled, children, skipToResults }) => (
   <Ans onClick={onClick} disabled={disabled}>
-    <RadioButton selected={selected} />
+    {!skipToResults &&
+      <RadioButton selected={selected} />
+    }
     {children}
   </Ans>
 );
+
+export const Button = styled.button`
+  background: none;
+  border: none;
+  margin: auto;
+  display: block;
+  cursor: pointer;
+
+  font-family: var(--sans);
+  font-size: 16px;
+`;

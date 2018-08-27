@@ -15,7 +15,8 @@ import {
 export default class Poll extends React.Component {
 
   state = {
-    selectedAns: void 0
+    selectedAns: void 0,
+    skipToResults: false,
   }
 
   componentWillMount() {
@@ -42,9 +43,10 @@ export default class Poll extends React.Component {
 
   render() {
     const { poll } = this.props;
-    const { selectedAns } = this.state;
+    const { selectedAns, skipToResults } = this.state;
     const { req, answerText } = getStateFor(this.props.poll).submitAnswerAsync;
     const hasAnswered = req === REQ.SUCCESS;
+    const showAnswers = hasAnswered || skipToResults;
 
     return (
       <S.Page>
@@ -56,16 +58,22 @@ export default class Poll extends React.Component {
             <S.Answer
               key={ans.text}
               selected={answerText === ans.text || selectedAns === ans}
-              onClick={hasAnswered ? void 0 : this.willSelect(ans)}
-              disabled={hasAnswered}
+              onClick={showAnswers ? void 0 : this.willSelect(ans)}
+              disabled={showAnswers}
+              skipToResults={skipToResults}
             >
               {ans.text}
-              {hasAnswered &&
+              {showAnswers &&
                 <AnswerStats poll={poll} ans={ans} />
               }
             </S.Answer>
           )}
         </S.Answers>
+        {(!selectedAns && !skipToResults) &&
+          <S.Button onClick={() => this.setState({ skipToResults: true })}>
+            Se hva andre har svart
+          </S.Button>
+        }
       </S.Page>
     );
   }
