@@ -14,6 +14,7 @@ class SummaryChapter extends React.Component {
             hash={`${chapter.slug.current}-${index}`}
             key={page._key}
             backgroundColor={page._type === 'reference' ? 'var(--butterscotch)' : ''}
+            isLastPage={true}
             >
             { index === 0 &&
               <Chapter.Title>{chapter.fullTitle}</Chapter.Title>

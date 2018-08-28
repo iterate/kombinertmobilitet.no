@@ -11,8 +11,8 @@ export default class Page extends React.Component {
           <S.Page>
             {this.props.children}
           </S.Page>
-          {this.props.isFirstPage &&
-            <Colophon />
+          {(this.props.isFirstPage || this.props.isLastPage) &&
+            <Colophon isLastPage={this.props.isLastPage} />
           }
         </S.PageWrapper>
       </HashScroller>

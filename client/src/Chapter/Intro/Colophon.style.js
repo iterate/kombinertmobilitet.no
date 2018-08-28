@@ -18,6 +18,13 @@ export const ButtonOpen = styled(Button)`
   bottom: 85px;
   right: 30px;
 `;
+export const ButtonOpenLastPage = styled(Button)`
+  position: absolute;
+  color: white;
+
+  bottom: 45px;
+  right: 30px;
+`;
 
 export const Colophon = styled.div`
   background-color: var(--butterscotch);

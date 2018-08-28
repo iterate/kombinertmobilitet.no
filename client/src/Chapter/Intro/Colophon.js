@@ -14,11 +14,15 @@ export default class Colophon extends React.Component {
 
     const { colophon } = appStore.contentAsync.content;
 
+    const ButtonOpen = this.props.isLastPage
+      ? S.ButtonOpenLastPage
+      : S.ButtonOpen;
+
     return (
       <S.Wrapper>
-        <S.ButtonOpen onClick={willOpen(true)}>
+        <ButtonOpen onClick={willOpen(true)}>
           ↑ Åpne kolofon
-        </S.ButtonOpen>
+        </ButtonOpen>
         <S.Colophon isOpen={isOpen}>
           <S.ButtonClose onClick={willOpen(false)}>
             × Lukk kolofon
