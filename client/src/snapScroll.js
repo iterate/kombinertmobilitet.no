@@ -50,7 +50,7 @@ function scrollToClosest() {
     .sort(ascending(absScollOffset))
     .slice(0, 1)
     .forEach(closestPage => {
-      closestPage.scrollIntoView({ block: 'start', behavior: 'smooth' });
+      closestPage.scrollIntoView({ block: 'start', behavior: 'smooth' });
 
       const hash = getKeyIn(hashStore.nodeMap)(closestPage);
 

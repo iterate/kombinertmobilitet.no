@@ -8,7 +8,7 @@ export { store as refStore };
 
 // Selector
 export function getDocumentAsync(_ref) {
-  return store[_ref] || { req: REQ.INIT };
+  return store[_ref] || { req: REQ.INIT };
 }
 
 // Async action
@@ -17,7 +17,7 @@ export function fetchDocument(_ref) {
     [_ref]: obj
   });
 
-  update({ req: REQ.PENDING });
+  update({ req: REQ.PENDING });
 
   sanity
     .fetch(`*[_id == '${_ref}'][0]`)

@@ -3,7 +3,7 @@ import REQ from 'util/REQ';
 import firebase from 'firebase/app';
 
 const uuid = poll => `${poll._id}.${poll._rev}`;
-const idByKey = snap => Object.keys(snap).map(key => ({ id: key, ...snap[key] }));
+const idByKey = snap => Object.keys(snap).map(key => ({ id: key, ...snap[key] }));
 
 const store = new Listenable();
 
@@ -136,7 +136,7 @@ export function submitAnswer(poll, answer) {
         storage.setIsAnswered(poll, answer);
       },
       (error) => {
-        update({ req: REQ.ERROR })
+        update({ req: REQ.ERROR })
         console.error(`error`, error);
       },
     );

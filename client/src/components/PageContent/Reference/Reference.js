@@ -29,7 +29,7 @@ export default class Reference extends React.Component {
       case REQ.ERROR:
         return <div>Noe gikk galt</div>;
       case REQ.SUCCESS:
-        return <PageContent page={doc} />;
+        return <PageContent page={doc} />;
     }
   }
 }

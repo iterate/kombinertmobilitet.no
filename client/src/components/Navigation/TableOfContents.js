@@ -37,7 +37,7 @@ export default class TableOfContents extends React.Component {
     };
   }
   getMergedStyle() {
-    const { transition: topTransition, ...topStyle } = this.getTopStyle();
+    const { transition: topTransition, ...topStyle } = this.getTopStyle();
     const { transition: colorTransition, ...colorStyle } = this.props.style;
 
     return {

@@ -3,7 +3,7 @@ import SiteTitle from './SiteTitle';
 import Navigation from 'components/Navigation';
 import Chapter from 'Chapter';
 
-import { appStore } from 'appStore';
+import { appStore } from 'appStore';
 
 export default class MainPage extends React.Component {
 

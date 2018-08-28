@@ -1,9 +1,9 @@
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import React, { Component } from 'react';
 import MainPage from 'pages/Main';
 import ChapterPage from 'pages/Chapter';
 
-import { appStore, fetchContent } from 'appStore';
+import { appStore, fetchContent } from 'appStore';
 import REQ from 'util/REQ';
 
 export default class App extends Component {
