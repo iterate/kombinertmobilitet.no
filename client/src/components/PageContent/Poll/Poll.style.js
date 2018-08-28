@@ -50,12 +50,20 @@ export const Answer = ({ selected, onClick, disabled, children, skipToResults })
 );
 
 export const Button = styled.button`
+  margin-top: 10px;
+  padding: 0;
+
   background: none;
   border: none;
-  margin: auto;
-  display: block;
   cursor: pointer;
 
   font-family: var(--sans);
   font-size: 16px;
+`;
+
+export const ErrorMessage = styled.div`
+  margin-top: 30px;
+  font-family: var(--sans);
+  font-size: 16px;
+  font-weight: 500;
 `;

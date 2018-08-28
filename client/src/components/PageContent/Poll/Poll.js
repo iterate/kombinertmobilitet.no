@@ -15,7 +15,7 @@ import {
 export default class Poll extends React.Component {
 
   state = {
-    selectedAns: void 0,
+    tentativeAns: void 0,
     skipToResults: false,
   }
 
@@ -32,18 +32,21 @@ export default class Poll extends React.Component {
   }
 
   willSelect = (ans) => () => {
-    this.setState({ selectedAns: ans });
+    this.setState({ tentativeAns: ans });
 
     window.clearTimeout(this.timeout);
     this.timeout = window.setTimeout(
-      () => submitAnswer(this.props.poll, ans),
+      () => {
+        submitAnswer(this.props.poll, ans);
+        this.setState({ tentativeAns: void 0 });
+      },
       1000
     );
   }
 
   render() {
     const { poll } = this.props;
-    const { selectedAns, skipToResults } = this.state;
+    const { tentativeAns, skipToResults } = this.state;
     const { req, answerText } = getStateFor(this.props.poll).submitAnswerAsync;
     const hasAnswered = req === REQ.SUCCESS;
     const showAnswers = hasAnswered || skipToResults;
@@ -57,7 +60,7 @@ export default class Poll extends React.Component {
           {poll.answerAlternatives.map(ans =>
             <S.Answer
               key={ans.text}
-              selected={answerText === ans.text || selectedAns === ans}
+              selected={answerText === ans.text || tentativeAns === ans}
               onClick={showAnswers ? void 0 : this.willSelect(ans)}
               disabled={showAnswers}
               skipToResults={skipToResults}
@@ -69,7 +72,12 @@ export default class Poll extends React.Component {
             </S.Answer>
           )}
         </S.Answers>
-        {(!selectedAns && !showAnswers) &&
+        {(!tentativeAns && !skipToResults && [REQ.ERROR].includes(req)) &&
+          <S.ErrorMessage>
+            Oops! Noe gikk galt. Prøve å svare på nytt?!
+          </S.ErrorMessage>
+        }
+        {(!tentativeAns && !skipToResults && [REQ.INIT, REQ.ERROR].includes(req)) &&
           <S.Button onClick={() => this.setState({ skipToResults: true })}>
             Se hva andre har svart
           </S.Button>

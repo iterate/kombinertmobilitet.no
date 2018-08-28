@@ -102,7 +102,6 @@ export function syncSubmittedAnswers(poll) {
         answerMap: aggregated,
       });
     });
-    // TODO REQ.ERROR ?
 }
 export function unSyncSubmittedAnswers(poll) {
 
@@ -122,6 +121,8 @@ export function submitAnswer(poll, answer) {
       submitAnswerAsync: obj
     }
   });
+
+  update({ req: REQ.PENDING });
 
   firebase
     .database()
