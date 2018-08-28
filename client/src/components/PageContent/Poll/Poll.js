@@ -69,7 +69,7 @@ export default class Poll extends React.Component {
             </S.Answer>
           )}
         </S.Answers>
-        {(!selectedAns && !skipToResults) &&
+        {(!selectedAns && !showAnswers) &&
           <S.Button onClick={() => this.setState({ skipToResults: true })}>
             Se hva andre har svart
           </S.Button>
