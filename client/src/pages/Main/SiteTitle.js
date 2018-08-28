@@ -19,6 +19,8 @@ const Title = styled.div`
   &.hidden {
     opacity: 0;
   }
+
+  z-index: 5;
 `;
 
 export default class SiteTitle extends React.PureComponent {
