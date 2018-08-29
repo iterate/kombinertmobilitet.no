@@ -22,6 +22,7 @@ export default class PageContent extends React.Component {
         return <Reference obj={page} PageContent={PageContent} />;
       default:
         console.error(`Forgot ${page._type}?`);
+        return false;
     }
   }
 }
