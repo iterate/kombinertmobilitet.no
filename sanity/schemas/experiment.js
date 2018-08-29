@@ -49,6 +49,7 @@ export default {
         { type: 'blockContent' },
         { type: 'slideshowPage' },
         { type: 'quotePage' },
+        { type: 'iframePage' },
         { type: 'reference', to: { type: 'pollPage' } },
       ],
     },

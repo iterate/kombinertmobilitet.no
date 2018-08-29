@@ -9,6 +9,7 @@ import experiment from './experiment';
 import blockContent from './blockContent';
 import quotePage from './quotePage';
 import slideshowPage from './slideshowPage';
+import iframePage from './iframePage';
 import pollPage, { answerAlternative } from './pollPage';
 
 import colophon from './colophon';
@@ -25,6 +26,7 @@ export default createSchema({
     experimentChapter,
     experiment,
     slideshowPage,
+    iframePage,
     pollPage,
     answerAlternative,
     blockContent,

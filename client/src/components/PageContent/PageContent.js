@@ -3,6 +3,7 @@ import BlockContent from './BlockContent';
 import Slideshow from './Slideshow';
 import QuotePage from './QuotePage';
 import Poll from './Poll';
+import IFrame from './IFrame';
 import Reference from './Reference';
 
 export default class PageContent extends React.Component {
@@ -18,6 +19,8 @@ export default class PageContent extends React.Component {
         return <QuotePage quotePage={page} />;
       case 'pollPage':
         return <Poll poll={page} />;
+      case 'iframePage':
+        return <IFrame iframePage={page} />;
       case 'reference':
         return <Reference obj={page} PageContent={PageContent} />;
       default:
